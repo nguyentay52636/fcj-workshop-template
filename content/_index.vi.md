@@ -9,32 +9,27 @@ chapter: false
 
 ### Thông tin sinh viên:
 
-&emsp; **Họ và tên:** Nguyễn Hồ Phương Tây
+**Họ và tên:** Nguyễn Hồ Phương Tây<br>
+**Số điện thoại:** +84 846777901<br>
+**Email:** phuongtay52663@gmail.com<br>
+**Trường:** Đại học Sài Gòn<br>
+**Ngành:** Công nghệ thông tin<br>
+**Lớp:** DCT1221<br>
 
-&emsp; **Số điện thoại:** +84846777901
+**Công ty thực tập:** Công ty TNHH Amazon Web Services Viet Nam<br>
 
-&emsp; **Email:** phuongtay52663@gmail.com
+**Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey<br>
 
-&emsp; **Trường:** Đại học Sài Gòn
-
-&emsp; **Ngành:** Công nghệ thông tin
-
-&emsp; **Lớp:** DCT1221
-
-&emsp; **Công ty thực tập:** Công ty TNHH Amazon Web Services Viet Nam
-
-&emsp; **Vị trí thực tập:** Workforce Bootcamp - First Cloud AI Journey
-
-&emsp; **Thời gian thực tập:** Từ ngày 22/06/2026 đến ngày 15/08/2026
+**Thời gian thực tập:** Từ ngày 22/06/2026 đến ngày 15/08/2026
 
 <!-- ![Ảnh đại diện của bạn](/images/avatar.png) -->
 
 ### Nội dung báo cáo
 
-1.  [Worklog](1-Worklog/)
-2.  [Proposal](2-Proposal/)
-3.  [Các bài blogs đã đăng](3-BlogsPosted/)
-4.  [Các events đã tham gia](4-EventParticipated/)
-5.  [Workshop](5-Workshop/)
-6.  [Tự đánh giá](6-Self-evaluation/)
-7.  [Chia sẻ, đóng góp ý kiến](7-Feedback/)
+1. [Worklog](1-Worklog/)
+2. [Proposal](2-Proposal/)
+3. [Các bài blogs đã đăng](3-BlogsPosted/)
+4. [Các events đã tham gia](4-EventParticipated/)
+5. [Workshop](5-Workshop/)
+6. [Tự đánh giá](6-Self-evaluation/)
+7. [Chia sẻ, đóng góp ý kiến](7-Feedback/)

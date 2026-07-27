@@ -6,23 +6,22 @@ chapter: false
 ---
 
 # Internship Report
+### Student Information
 
-### Student Information:
+- **Full Name:** Nguyen Ho Phuong Tay
+- **Phone Number:** +84 846777901
+- **Email:** phuongtay52663@gmail.com
+- **University:** Sai Gon University
+- **Major:** Information Technology
+- **Class:** DCT1221
 
-&emsp; **Full Name:** Nguyen Ho Phuong Tay
-&emsp; **Phone Number:** +84846777901
-&emsp; **Email:** phuongtay52663@gmail.com
-&emsp; **University:** Sai Gon University
-&emsp; **Major:** Information Technology
-&emsp; **Class:** DCT1221
+- **Internship Company:** Amazon Web Services Viet Nam Company Limited
 
-&emsp; **Internship Company:** Amazon Web Services Viet Nam Company Limited
+- **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
 
-&emsp; **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
+- **Internship Duration:** From 22/06/2026 to 15/08/2026
 
-&emsp; **Internship Duration:** From 22/06/2026 to 15/08/2026
-
-<!-- ![Your profile picture](/images/avatar.png) -->
+![Your profile picture](/images/avatar.png)
 
 ### Report Content
 
