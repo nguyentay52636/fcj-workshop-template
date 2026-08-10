@@ -1,7 +1,10 @@
 baseURL = "https://workshop-sample.awsfcaj.com/"
 relativeURLs = false
 canonifyURLs = false
-defaultContentLanguage = "vi"
+# English is default → no URL prefix (/7-feedback/)
+# Vietnamese is secondary → /vi/ prefix (/vi/7-feedback/)
+defaultContentLanguage = "en"
+defaultContentLanguageInSubdir = false
 
 # Change the default theme to be use when building the site with Hugo
 theme = "hugo-theme-learn"
@@ -22,26 +25,9 @@ home = [ "HTML", "RSS", "JSON"]
   disableNextPrev = false
   
 [Languages]
-[Languages.vi]
-title = "Báo cáo thực tập"
-weight = 1
-languageName = "Tiếng Việt"
-
-[[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
-identifier = "AWS Study Group"
-url = "http://awsstudygroup.com"
-weight = 20
-
-[[Languages.vi.menu.shortcuts]]
-name = "<i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB"
-identifier = "AWS Study Group FB"
-url = "https://www.facebook.com/groups/awsstudygroupfcj"
-weight = 20
-
 [Languages.en]
 title = "Internship Report"
-weight = 2
+weight = 1
 languageName = "English"
 
 [[Languages.en.menu.shortcuts]]
@@ -52,6 +38,23 @@ weight = 20
 
 [[Languages.en.menu.shortcuts]]
 name = "<i class='fab fa-facebook'></i> AWS Study Group - FB Group"
+identifier = "AWS Study Group FB"
+url = "https://www.facebook.com/groups/awsstudygroupfcj"
+weight = 20
+
+[Languages.vi]
+title = "Báo cáo thực tập"
+weight = 2
+languageName = "Tiếng Việt"
+
+[[Languages.vi.menu.shortcuts]]
+name = "<i class='fab fa-aws'></i> AWS Study Group - Blog"
+identifier = "AWS Study Group"
+url = "http://awsstudygroup.com"
+weight = 20
+
+[[Languages.vi.menu.shortcuts]]
+name = "<i class='fab fa-facebook'></i> AWS Study Group - Nhóm FB"
 identifier = "AWS Study Group FB"
 url = "https://www.facebook.com/groups/awsstudygroupfcj"
 weight = 20
