@@ -1,126 +1,147 @@
 ---
 title: "Event 1"
-date: 2024-01-01
+date: 2026-07-25
 weight: 1
 chapter: false
 pre: " <b> 4.1. </b> "
 ---
 
-{{% notice warning %}}
-⚠️ **Note:** The information below is for reference purposes only. Please **do not copy it verbatim** into your report, including this warning.
-{{% /notice %}}
+# Reflection Report on "FCAJ x Agentic AI Build Week"
 
-# Summary Report: “GenAI-powered App-DB Modernization workshop”
+- Time: 09:00 AM - 12:00 PM, July 25, 2026.
+- Location: 26th Floor, Bitexco Financial Tower, No. 2 Hai Trieu Street, Ben Nghe Ward, District 1, Ho Chi Minh City, Vietnam.
 
-### Event Objectives
+### Purpose of the Event
 
-- Share best practices in modern application design
-- Introduce Domain-Driven Design (DDD) and event-driven architecture
-- Provide guidance on selecting the right compute services
-- Present AI tools to support the development lifecycle
+The FCAJ x Agentic AI Build Week event was organized to connect and share in-depth knowledge following the Hackathon of the same name. The core objective of the program was to create a space for participating teams to present, demonstrate practical technology projects, and spread valuable lessons learned during the process of building Agentic AI solutions on the AWS cloud infrastructure. Through analyzing business problems, system architecture design skills, and ways to solve challenges under time pressure, the event not only helped the community access modern technology applications but also promoted innovative thinking while equipping participants with the practical skills necessary to enrich their portfolios and prepare for future career opportunities.
 
-### Speakers
+### Participation Role
 
-- **Jignesh Shah** – Director, Open Source Databases
-- **Erica Liu** – Sr. GTM Specialist, AppMod
-- **Fabrianne Effendi** – Assc. Specialist SA, Serverless Amazon Web Services
+As an attendee of the event, I had the opportunity to directly access practical knowledge from outstanding projects following the Hackathon. By listening to the teams' presentations, solution demonstrations, and sharing about the product building process, I accumulated valuable lessons on problem-solving mindsets, system architecture design methods on the AWS cloud platform, and how to optimize Agentic AI models in practice. The event not only helped me expand my network with the technology community but was also a great source of inspiration for me to develop creative thinking and be ready to apply modern technologies to future professional challenges.
 
-### Key Highlights
+### List of Speakers
 
-#### Identifying the drawbacks of legacy application architecture
+- **Giuseppe Marazzotta** - Head of Tech & Solutions Architecture, ASEAN at Amazon Web Services
+- Team **One Team**
+- Team **Signal Scout**
+- Team **Plan V**
+- Team **3KA**
+- Team **Six Pillars**
 
-- Long product release cycles → Lost revenue/missed opportunities  
-- Inefficient operations → Reduced productivity, higher costs  
-- Non-compliance with security regulations → Security breaches, loss of reputation  
+### Content
 
-#### Transitioning to modern application architecture – Microservices
+Opening the program was a sharing session by Mr. **Giuseppe Marazzotta**:
 
-Migrating to a modular system — each function is an **independent service** communicating via **events**, built on three core pillars:
+- He shared that this event is an excellent opportunity for the community to learn together, practice, and build technology-based solutions, specifically **Agentic AI** on the AWS platform.
+- He encouraged the daring spirit of the competing teams, emphasizing the ability to apply new tools to solve practical and complex problems.
+- He highly appreciated the efforts of the **AWS Study Group** and the **FCAJ** community in creating a connecting environment where engineers, students, and technology enthusiasts can interact, exchange skills, and develop their careers.
 
-- **Queue Management**: Handle asynchronous tasks  
-- **Caching Strategy**: Optimize performance  
-- **Message Handling**: Flexible inter-service communication  
+#### Topic 1: AI-Powered Conversation Ordering - One Team
 
-#### Domain-Driven Design (DDD)
+The presentation by **One Team** regarding the **AI-Powered Conversation Ordering** project shared the journey to winning the championship at the **Agentic AI Build Week** competition through the development of an ordering chatbot for KFC.
+- The team was inspired by the limitations of AI systems at **drive-through** counters (such as McDonald's), where AI struggles with natural conversation and causes serious ordering errors. The team set a goal to create a smarter, more accurate, and more convenient ordering solution for users.
+- The team built a **Multi-Channel AI Agent**, focusing primarily on Zalo and Whatsapp, helping users without needing to switch applications or perform complex account creation processes. The system focused on understanding customer intentions, integrating tools to collect data from the KFC Website via **TinyFish**, and storing it on the AWS infrastructure.
+- Designing the architecture in a **modular** format makes it easy to customize without needing to rebuild the entire system.
+- Using the **Agentic Platform** to manage the conversation flow and featuring an order confirmation step to prevent AI errors.
+- The team emphasized the importance of building a Network, effective teamwork under time pressure at the Hackathon, and most importantly, prioritizing the creation of a product that solves actual business problems rather than just focusing on technical aspects.
 
-- **Four-step method**: Identify domain events → arrange timeline → identify actors → define bounded contexts  
-- **Bookstore case study**: Demonstrates real-world DDD application  
-- **Context mapping**: 7 patterns for integrating bounded contexts  
+#### Topic 2: Value Creation & Delivery Canvas - Signal Scout
 
-#### Event-Driven Architecture
+The presentation by the **Signal Scout** team focused on the methodology and mindset of project building in a Hackathon environment.
+- The team redesigned the traditional business model to fit the **Hackathon** and **Pitching** context. They eliminated revenue or cash flow factors to focus on value creation and delivery, helping to clarify how the project solves specific market problems.
+- The team emphasized that in a competition, the system does not need to be 100% complete. What is important is that 70% of the decision to win lies in the team clearly defining the problem to be solved and how they built that solution.
+- Implementation process:
+    + Clear Direction: Emphasized the need for clear direction from the beginning, avoiding rambling debates among members.
+    + Teamwork: To succeed, members must know how to set aside their egos, trust each other, and clearly divide roles.
+    + Practicality: An idea, no matter how good, becomes meaningless if it only remains on paper. The team highly valued having a working demo to convince the judges.
+- The team shared experiences in overcoming technical challenges, time management, and the importance of building products that bring practical value rather than just focusing on technicalities.
 
-- **3 integration patterns**: Publish/Subscribe, Point-to-point, Streaming  
-- **Benefits**: Loose coupling, scalability, resilience  
-- **Sync vs async comparison**: Understanding the trade-offs  
+#### Topic 3: Solution Architect Professional Native App - Plan V
 
-#### Compute Evolution
+The presentation by the **Plan V** team focused on solving the problem of **Solution Architects** having to hurriedly design architectures and estimate costs for customers.
+- **SAs** often face pressure when customers request architectural diagrams, cost estimates, and even deployment plans within a short period of time (usually 1-2 days), making it difficult to ensure accuracy and optimization.
+- The team developed an **AI-Native** application allowing:
+    + Natural language analysis: Users simply describe requirements, and the AI automatically analyzes and converts them into an architectural diagram.
+    + Internal document integration: Allows uploading corporate policies or regulations so the AI complies with existing architectures (e.g., security requirements, preferred services).
+    + Automation: The system supports generating **Terraform code** and estimated cost sheets, significantly reducing work time.
+- The system uses **LLM** as the core, but the team emphasized that the true value lies in **High-level Engineering** such as context management, workflow, and Agent memory.
+- The team implemented an output validation mechanism to ensure selected services are not on a blacklist and strictly comply with the enterprise's technical requirements.
+- The product solves real business problems instead of just demonstrating new technological techniques.
+- The biggest challenge of **Agentic AI** is ensuring output consistency across different executions.
 
-- **Shared Responsibility Model**: EC2 → ECS → Fargate → Lambda  
-- **Serverless benefits**: No server management, auto-scaling, pay-for-value  
-- **Functions vs Containers**: Criteria for appropriate choice  
+#### Topic 4: Hackathon Journey - 3KA
 
-#### Amazon Q Developer
+The presentation by the **3KA** team was a story about the journey of overcoming challenges for members participating in a real-world technology competition for the first time.
+- The team built a crowd density monitoring system using **Computer Vision** through real-time cameras, aiming to apply it as a prototype for a graduation project.
+- Used **Amazon Kinesis Streams** to establish **WebSocket** connections from cameras.
+- Built an image processing system based on **AWS Fargate** combined with **YOLO** to perform object detection and tracking tasks.
+- Data is stored and retrieved via **DynamoDB** and **S3**.
+- Challenges faced:
+    + Most team members had never participated in a Hackathon and lacked a solid foundation in AWS infrastructure, leading to confusion and significant time spent in the initial phase.
+    + Had to work overnight until 3-4 AM to complete the product and prepare the presentation in time.
+- The team emphasized that the value of a Hackathon does not solely lie in awards or technical knowledge, but in practical experience, personal development, and the ability to work as a team under high pressure.
+- The most important experience is clearly defining goals early on to optimize time and avoid deploying costly structures.
 
-- **SDLC automation**: From planning to maintenance  
-- **Code transformation**: Java upgrade, .NET modernization  
-- **AWS Transform agents**: VMware, Mainframe, .NET migration  
+#### Topic 5: Adaptive AML Workflow Engine - Six Pillars
 
-### Key Takeaways
+The presentation by the **Six Pillars** team focused on applying **Agentic AI** to optimize the anti-money laundering workflow for financial institutions.
+- The current process of investigating suspicious transactions remains very manual, costly (20-25 USD per review), and overloads personnel. A traditional case can take up to 3 hours to resolve.
+- The team developed a workflow automation system that helps replace manual processing steps with specialized Agents:
+    + KYC Agent: Checks customer identification information.
+    + Transaction Agent: Analyzes transaction flows.
+    + Evidence Builder: Synthesizes evidence to make decisions.
+- The system does not replace humans but acts as an effective assistant, accelerating processing speed, ensuring transparency, and providing scalability.
+- The team emphasized the importance of defining the scope from the beginning to avoid getting bogged down in excessively broad requirements during the limited time of the Hackathon, as well as clearly dividing tasks for each member.
 
-#### Design Mindset
+### What I Learned
 
-- **Business-first approach**: Always start from the business domain, not the technology  
-- **Ubiquitous language**: Importance of a shared vocabulary between business and tech teams  
-- **Bounded contexts**: Identifying and managing complexity in large systems  
+After participating in this event, I learned a great deal through the sharing of the seniors:
 
-#### Technical Architecture
+**1.** Product Mindset:
+- The most important lesson is that technology, no matter how modern, becomes meaningless if it does not solve a specific problem for the enterprise or users. Instead of starting with techniques, start by clearly defining the target customers and the difficulties they are facing.
+- A good idea needs to be validated through a specific product. Having a working demo is far more convincing than paper presentations.
 
-- **Event storming technique**: Practical method for modeling business processes  
-- Use **event-driven communication** instead of synchronous calls  
-- **Integration patterns**: When to use sync, async, pub/sub, streaming  
-- **Compute spectrum**: Criteria for choosing between VM, containers, and serverless  
+**2.** Project Operation Skills:
+- In short-term competitions or projects, scope control is crucial. Do not try to build an overly bulky system; instead, focus on core features to ensure stability and operability.
+- Understanding how to build automated systems based on AI Agents, knowing how to manage workflows, contexts, and memories to create smart, consistent, and scalable solutions.
 
-#### Modernization Strategy
+**3.** Teamwork Skills and Personal Resilience:
+- Project success depends on collaboration, knowing how to set aside personal egos, and clearly dividing roles among members (AI, Data, Backend, Business, Presentation).
+- The Hackathon experience hones the ability to think quickly, handle time pressure, and maintain a never-give-up spirit when facing technical errors or system incidents in a real-world environment.
 
-- **Phased approach**: No rushing — follow a clear roadmap  
-- **7Rs framework**: Multiple modernization paths depending on the application  
-- **ROI measurement**: Cost reduction + business agility  
+**4**. Learning Mindset:
+- Technical knowledge can be learned through books or documents, but practical combat experience with teammates is the only thing that helps develop soft skills and deep professional thinking.
+- Proactively seek learning opportunities such as Hackathons. These competitions help us cultivate both professional knowledge and survival skills in competitive environments, where creativity and the ability to work under pressure are determining factors for success.
 
-### Applying to Work
+### Application to Work
 
-- **Apply DDD** to current projects: Event storming sessions with business teams  
-- **Refactor microservices**: Use bounded contexts to define service boundaries  
-- **Implement event-driven patterns**: Replace some sync calls with async messaging  
-- **Adopt serverless**: Pilot AWS Lambda for suitable use cases  
-- **Try Amazon Q Developer**: Integrate into the dev workflow to boost productivity  
+Based on the practical value from the **FCAJ x Agentic AI Build Week** event, I have developed a specific application plan for my work and studies as follows:
+- The knowledge gained from the event will be an important foundation for my learning process as well as my future career orientation.
 
-### Event Experience
+In the near future, I plan to:
+- Integrate **Agentic AI** thinking into operations: Apply the Multi-Agent model to automate complex business processes, from gathering information and analyzing data to making decisions, helping to optimize performance instead of just performing isolated manual tasks.
+- Develop an execution-first mindset: Focus on building MVP (Minimum Viable Product) or POC (Proof of Concept) products to validate the practical value of solutions directly in the cloud environment, rather than spending too much time planning on paper.
+- Standardize AI processes according to Enterprise standards: Apply knowledge of Context management, Memory, and Human-in-the-loop processes in projects to ensure AI systems possess quality control capabilities and are easy to audit and maintain in the long term.
+- Combine diverse ecosystems: Leverage the flexible integration capabilities of AI tools with existing AWS infrastructure to connect data from various sources, making AI a true central assistant that provides solid support for actual business problems.
 
-Attending the **“GenAI-powered App-DB Modernization”** workshop was extremely valuable, giving me a comprehensive view of modernizing applications and databases using advanced methods and tools. Key experiences included:
+### Experience During the Event
 
-#### Learning from highly skilled speakers
-- Experts from AWS and major tech organizations shared **best practices** in modern application design.  
-- Through real-world case studies, I gained a deeper understanding of applying **DDD** and **Event-Driven Architecture** to large projects.  
+The **FCAJ x Agentic AI Build Week** event was highly professional and inspiring, providing a vibrant practical environment for the technology community. The atmosphere at the event consisted not only of theoretical presentations but also product demos from competing teams, creating excellent conditions for us to network and learn from those sharing the same passion.
 
-#### Hands-on technical exposure
-- Participating in **event storming** sessions helped me visualize how to **model business processes** into domain events.  
-- Learned how to **split microservices** and define **bounded contexts** to manage large-system complexity.  
-- Understood trade-offs between **synchronous and asynchronous communication** and integration patterns like **pub/sub, point-to-point, streaming**.  
+What impressed me the most was the high practicality of the presented projects. Instead of just discussing theory, the teams directly addressed real-world problems such as monitoring crowd density using Computer Vision or building complex Agentic Workflows in the anti-money laundering domain. Particularly, observing how teams handled incidents, optimized infrastructure costs (such as adjusting models to reduce SageMaker costs), and secured systems gave me a clear perspective on the practical challenges of deploying AI on AWS.
 
-#### Leveraging modern tools
-- Explored **Amazon Q Developer**, an AI tool for SDLC support from planning to maintenance.  
-- Learned to **automate code transformation** and pilot serverless with **AWS Lambda** to improve productivity.  
+Through the event, I realized that success comes not only from mastering technology but also depends on the ability to define project scopes, task division skills, and the spirit of teamwork under intense pressure. This was an extremely valuable experience, helping me strengthen my motivation and have a clearer direction in becoming an engineer who is not only technically proficient but also perceptive to solutions solving real business problems.
 
-#### Networking and discussions
-- The workshop offered opportunities to exchange ideas with experts, peers, and business teams, enhancing the **ubiquitous language** between business and tech.  
-- Real-world examples reinforced the importance of the **business-first approach** rather than focusing solely on technology.  
+### Event Photos
 
-#### Lessons learned
-- Applying DDD and event-driven patterns reduces **coupling** while improving **scalability** and **resilience**.  
-- Modernization requires a **phased approach** with **ROI measurement**; rushing the process can be risky.  
-- AI tools like Amazon Q Developer can significantly **boost productivity** when integrated into the current workflow.  
+Here are some photos from the event:
 
-#### Some event photos
-*Add your event photos here*  
+![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_01.jpg)
 
-> Overall, the event not only provided technical knowledge but also helped me reshape my thinking about application design, system modernization, and cross-team collaboration.
+![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_02.jpg)
+
+![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_03.jpg)
+
+![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_04.jpg)
+
+![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_05.jpg)
