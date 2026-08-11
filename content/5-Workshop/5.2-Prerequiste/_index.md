@@ -1,5 +1,5 @@
 ---
-title: "Các bước chuẩn bị"
+title: "Prerequisites"
 date: 2024-01-01
 weight: 2
 chapter: false
@@ -7,25 +7,25 @@ pre: " <b> 5.2. </b> "
 ---
 
 
-Trước khi triển khai bất kỳ luồng nào, cần chuẩn bị đầy đủ tài khoản, quyền truy cập và công cụ dưới đây. Bỏ qua bước chuẩn bị thường là nguyên nhân gây tắc nghẽn giữa chừng — đặc biệt là việc xin quyền truy cập model trên Bedrock, vốn có thể mất thời gian chờ duyệt.
- 
-#### Yêu cầu chung
- 
-Trước khi bắt đầu, bạn cần chuẩn bị các điều kiện sau:
- 
-* Một tài khoản AWS.
-* Region sử dụng trong dự án này là **N. Virginia (us-east-1)** — khu vực hỗ trợ đầy đủ các model cần dùng trên Amazon Bedrock (Claude 3, Titan Embeddings).
-* Một tài khoản **HCP Terraform** (app.terraform.io) để quản lý remote state.
-* Quyền truy cập model (Model access) đã được cấp cho Claude 3 và Titan Embeddings trên Amazon Bedrock.
-#### Công cụ cần cài đặt
- 
-* **Terraform** (phiên bản 1.5 trở lên) để triển khai hạ tầng dưới dạng Infrastructure as Code.
-* **AWS CLI** (v2) để thao tác và kiểm thử với các dịch vụ AWS từ dòng lệnh.
-* **Python** (phiên bản 3.12) để phát triển các hàm AWS Lambda (Document Processor, Chat Engine, RAGAS Evaluation Runner).
-* **Git** để quản lý mã nguồn và Terraform state theo version.
-* Một trình soạn thảo mã nguồn như **Visual Studio Code**.
-Sau khi cài đặt xong, kiểm tra nhanh bằng các lệnh sau:
- 
+Before deploying any workflow, you need to fully prepare the accounts, access, and tools below. Skipping the preparation step is often the cause of mid-way blockers — especially requesting model access on Bedrock, which can take time to be approved.
+
+#### General requirements
+
+Before you start, you need to prepare the following:
+
+* An AWS account.
+* The region used in this project is **N. Virginia (us-east-1)** — the region that fully supports the required models on Amazon Bedrock (Claude 3, Titan Embeddings).
+* An **HCP Terraform** account (app.terraform.io) to manage remote state.
+* Model access has been granted for Claude 3 and Titan Embeddings on Amazon Bedrock.
+#### Tools to install
+
+* **Terraform** (version 1.5 or later) to deploy infrastructure as code.
+* **AWS CLI** (v2) to operate and test AWS services from the command line.
+* **Python** (version 3.12) to develop AWS Lambda functions (Document Processor, Chat Engine, RAGAS Evaluation Runner).
+* **Git** to manage source code and version the Terraform state.
+* A code editor such as **Visual Studio Code**.
+After installation, quickly verify with the following commands:
+
 ```bash
 aws --version
 terraform -version
@@ -36,7 +36,7 @@ git --version
 
 #### IAM permissions
 
-Tài khoản/IAM User dùng để triển khai dự án (chạy `terraform apply`) cần được gắn policy với các nhóm quyền sau, tương ứng với từng nhóm dịch vụ trong kiến trúc:
+The account/IAM User used to deploy the project (running `terraform apply`) needs to have a policy attached with the following permission groups, corresponding to each service group in the architecture:
 
 ```
 {
@@ -258,8 +258,8 @@ Tài khoản/IAM User dùng để triển khai dự án (chạy `terraform apply
 
 ```
 
-#### Nội dung
+#### Contents
 
-1. [Cấu hình AWS Credentials](5.2.1-Configure-AWS-Credentials/_index.vi.md)
-2. [Cấu hình HCP Terraform](5.2.2-Configure-HCP-Terraform/_index.vi.md)
-2. [Chuẩn bị Code Terraform](5.2.3-Prepare-Terraform-Code/_index.vi.md)
+1. [Configure AWS Credentials](5.2.1-Configure-AWS-Credentials/_index.md)
+2. [Configure HCP Terraform](5.2.2-Configure-HCP-Terraform/_index.md)
+2. [Prepare Terraform Code](5.2.3-Prepare-Terraform-Code/_index.md)

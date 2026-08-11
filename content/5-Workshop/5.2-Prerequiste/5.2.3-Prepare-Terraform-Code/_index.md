@@ -1,22 +1,22 @@
 ---
-title: "Chuẩn bị Code Terraform"
+title: "Prepare Terraform Code"
 date: 2024-01-01
 weight: 3
 chapter: false
 pre: " <b> 5.2.3 </b> "
 ---
 
-### Công cụ cần cài đặt
+### Tools to install
 
-Trước khi bắt đầu, hãy bảo đảm rằng các công cụ sau đã được cài đặt:
+Before you start, make sure the following tools are installed:
 
-**Terraform** phiên bản **1.5** trở lên để triển khai hạ tầng theo mô hình Infrastructure as Code.
+**Terraform** version **1.5** or later to deploy infrastructure as code.
 
-**AWS CLI** để tương tác với các dịch vụ AWS và thực hiện các bước kiểm thử từ dòng lệnh.
+**AWS CLI** to interact with AWS services and perform testing steps from the command line.
 
-**Python** phiên bản **3.12** trở lên để phát triển các hàm Lambda.
+**Python** version **3.12** or later to develop the Lambda functions.
 
-Bạn có thể kiểm tra các công cụ đã được cài đặt thành công bằng cách chạy các lệnh sau:
+You can check that the tools were installed successfully by running the following commands:
 
 ```
 terraform version
@@ -26,15 +26,15 @@ python3 --version
 
 ![](/images/5-Workshop/5.2-Prerequisite/image5.2.3a.png)
 
-### Cấu hình biến môi trường AWS credentials cho CLI
+### Configure AWS credentials environment variables for the CLI
 
-Trên cửa sổ terminal, cấu hình AWS credentials để AWS CLI có thể xác thực và thực thi các lệnh trong suốt quá trình triển khai cũng như kiểm thử hệ thống:
+In the terminal window, configure AWS credentials so that the AWS CLI can authenticate and run commands throughout the deployment and testing process:
 
 ```
 aws configure
 ```
 
-Lần lượt nhập các thông tin sau:
+Enter the following information in order:
 
 ```
 AWS Access Key ID       [None]: <ACCESS_KEY_ID>
@@ -43,23 +43,23 @@ Default region name     [None]: us-east-1
 Default output format   [None]:
 ```
 
-Sau khi cấu hình xong, hãy giới hạn quyền truy cập vào file credentials để chỉ tài khoản hiện tại có thể đọc được:
+After configuring, restrict access to the credentials file so only the current account can read it:
 
 ```
 chmod 600 ~/.aws/credentials
 ```
 
-Kiểm tra lại credentials để bảo đảm việc xác thực đã thành công:
+Verify the credentials again to make sure authentication succeeded:
 
 ```
 aws sts get-caller-identity
 ```
 
-### Cấu hình nền tảng Terraform
+### Configure the Terraform foundation
 
-Tại thư mục gốc của dự án, tạo thư mục mới có tên là terraform. Thư mục này chứa các file Terraform dùng để triển khai hạ tầng AWS.
+In the project's root directory, create a new folder named terraform. This folder contains the Terraform files used to deploy the AWS infrastructure.
 
-Tạo file **providers.tf** để khai báo phiên bản Terraform, cấu hình kết nối với HCP Terraform và thiết lập AWS Provider. Thay **TEN-TO-CHUC** bằng tên Organization của bạn và **TEN-WORKSPACE** bằng tên Workspace đã tạo trên HCP Terraform.
+Create a **providers.tf** file to declare the Terraform version, configure the connection to HCP Terraform, and set up the AWS Provider. Replace **YOUR-ORGANIZATION-NAME** with your Organization name and **YOUR-WORKSPACE-NAME** with the Workspace name created on HCP Terraform.
 
 ```terraform
 terraform {
@@ -102,41 +102,41 @@ provider "aws" {
 }
 ```
 
-### Kết nối và khởi tạo tài nguyên
+### Connect and initialize resources
 
-Trong terminal, chuyển đến thư mục chứa các file Terraform, sau đó chạy lệnh dưới đây để đăng nhập và kết nối Terraform CLI với HCP Terraform:
+In the terminal, navigate to the folder containing the Terraform files, then run the command below to sign in and connect the Terraform CLI to HCP Terraform:
 
 ```
 terraform login
 ```
 
-![Kết nối và khởi tạo tài nguyên](/images/5-Workshop/5.2-Prerequisite/image5.2.3b.png)
+![Connect and initialize resources](/images/5-Workshop/5.2-Prerequisite/image5.2.3b.png)
 
-- Mở đường dẫn được hiển thị trên cửa sổ terminal:
+- Open the URL shown in the terminal window:
 
-![Kết nối và khởi tạo tài nguyên](/images/5-Workshop/5.2-Prerequisite/image5.2.3c.png)
+![Connect and initialize resources](/images/5-Workshop/5.2-Prerequisite/image5.2.3c.png)
 
-- Nhập Description nếu muốn để dễ dàng nhận biết token.
-- Chọn thời gian hết hạn cho API Token.
-- Nhấn Generate token.
+- Enter a Description if you want, to make the token easy to identify.
+- Choose an expiration time for the API Token.
+- Click Generate token.
 
-![Kết nối và khởi tạo tài nguyên](/images/5-Workshop/5.2-Prerequisite/image5.2.3d.png)
+![Connect and initialize resources](/images/5-Workshop/5.2-Prerequisite/image5.2.3d.png)
 
-- Copy Token vừa tạo vào Terminal:
+- Copy the newly created Token into the Terminal:
 
-![Kết nối và khởi tạo tài nguyên](/images/5-Workshop/5.2-Prerequisite/image5.2.3e.png)
+![Connect and initialize resources](/images/5-Workshop/5.2-Prerequisite/image5.2.3e.png)
 
-- Sau khi đăng nhập thành công, khởi tạo Terraform để tải tài provider và kết nối Workspace:
+- After signing in successfully, initialize Terraform to download the providers and connect to the Workspace:
 
 ```
 terraform init
 ```
 
-![Kết nối và khởi tạo tài nguyên](/images/5-Workshop/5.2-Prerequisite/image5.2.3f.png)
+![Connect and initialize resources](/images/5-Workshop/5.2-Prerequisite/image5.2.3f.png)
 
-Sau khi hoàn thành các bước trên, môi trường làm việc đã được cấu hình đầy đủ và sẵn sàng để triển khai hệ thống **RAG** trong các phần tiếp theo.
+After completing the steps above, the working environment is fully configured and ready to deploy the **RAG** system in the following sections.
 
-### Cấu trúc thư mục repo
+### Repo directory structure
 
 Tổ chức repo theo từng luồng để dễ phân công và review:
 
@@ -192,9 +192,9 @@ Project/
 └── variables.tf
 ```
 
-### Chuẩn bị Git và cấu hình .gitignore
+### Prepare Git and configure .gitignore
 
-Chạy `git init`, tạo `.gitignore` loại trừ `.terraform/`, `*.tfstate`, `venv/`, `__pycache__/`, push lên remote repo (GitHub) đã thống nhất trong nhóm. Việc này giúp bảo vệ thông tin nhạy cảm và giữ cho repository gọn gàng.
+Run `git init`, create a `.gitignore` excluding `.terraform/`, `*.tfstate`, `venv/`, `__pycache__/`, and push to the remote repo (GitHub) agreed upon by the team. This helps protect sensitive information and keeps the repository clean.
 
 ```gitignore
 # AWS credentials — NEVER commit. Standard filename AWS IAM console uses
@@ -236,12 +236,12 @@ docker/**/__pycache__/
 *.pyc
 ```
 
-- Thư mục `.terraform/`: Đây là nơi Terraform lưu cache các provider được tải về khi chạy `terraform init`. Thư mục này có dung lượng lớn và có thể tái tạo dễ dàng nên không cần đưa lên repository.
+- The `.terraform/` folder: This is where Terraform caches the providers downloaded when running `terraform init`. This folder is large and can be easily recreated, so it doesn't need to be committed to the repository.
 
-- Các file `*.tfstate`, `*.tfstate.*`: Đây là file trạng thái hạ tầng, có thể chứa thông tin nhạy cảm. Vì dự án sử dụng HCP Terraform để quản lý remote state, trạng thái đã được lưu tập trung trên HCP nên không cần lưu cục bộ trong repository.
+- The `*.tfstate`, `*.tfstate.*` files: These are infrastructure state files, which may contain sensitive information. Since the project uses HCP Terraform to manage remote state, the state is already stored centrally on HCP, so there's no need to keep it locally in the repository.
 
-- Các file `*.tfvars`: Đây là nơi chứa giá trị biến thật như email nhận cảnh báo, nên không đưa lên repository để tránh lộ thông tin. Chúng ta chỉ giữ lại file mẫu `*.tfvars.example`.
+- The `*.tfvars` files: These hold real variable values such as the alert notification email, so they aren't committed to the repository to avoid leaking information. We only keep the sample file `*.tfvars.example`.
 
-#### Nội dung tiếp theo
+#### Next content
 
-- [Xử lý và lưu trữ tài liệu](../../5.3-Data-Ingestion/)
+- [Data Ingestion](../../5.3-Data-Ingestion/)
