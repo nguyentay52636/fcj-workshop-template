@@ -15,8 +15,8 @@ Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân t
 
 | STT | Tiêu chí                            | Mô tả                                                                                            | Tốt | Khá | Trung bình |
 | --- | ----------------------------------- | ------------------------------------------------------------------------------------------------ | --- | --- | ---------- |
-| 1   | **Kiến thức và kỹ năng chuyên môn** | Hiểu biết về ngành, áp dụng kiến thức vào thực tế, kỹ năng sử dụng công cụ, chất lượng công việc | ✅  | ☐   | ☐          |
-| 2   | **Khả năng học hỏi**                | Tiếp thu kiến thức mới, học hỏi nhanh                                                            | ✅  | ☐   | ☐          |
+| 1   | **Kiến thức và kỹ năng chuyên môn** | Hiểu biết về ngành, áp dụng kiến thức vào thực tế, kỹ năng sử dụng công cụ, chất lượng công việc | ☐   | ✅  | ☐          |
+| 2   | **Khả năng học hỏi**                | Tiếp thu kiến thức mới, học hỏi nhanh                                                            | ☐   | ✅  | ☐          |
 | 3   | **Chủ động**                        | Tự tìm hiểu, nhận nhiệm vụ mà không chờ chỉ dẫn                                                  | ✅  | ☐   | ☐          |
 | 4   | **Tinh thần trách nhiệm**           | Hoàn thành công việc đúng hạn, đảm bảo chất lượng                                                | ✅  | ☐   | ☐          |
 | 5   | **Kỷ luật**                         | Tuân thủ giờ giấc, nội quy, quy trình làm việc                                                   | ✅  | ☐   | ☐          |
@@ -25,7 +25,7 @@ Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân t
 | 8   | **Hợp tác nhóm**                    | Làm việc hiệu quả với đồng nghiệp, tham gia nhóm                                                 | ✅  | ☐   | ☐          |
 | 9   | **Ứng xử chuyên nghiệp**            | Tôn trọng đồng nghiệp, đối tác, môi trường làm việc                                              | ✅  | ☐   | ☐          |
 | 10  | **Tư duy giải quyết vấn đề**        | Nhận diện vấn đề, đề xuất giải pháp, sáng tạo                                                    | ☐   | ✅  | ☐          |
-| 11  | **Đóng góp vào dự án/tổ chức**      | Hiệu quả công việc, sáng kiến cải tiến, ghi nhận từ team                                         | ✅  | ☐   | ☐          |
+| 11  | **Đóng góp vào dự án/tổ chức**      | Hiệu quả công việc, sáng kiến cải tiến, ghi nhận từ team                                         | ☐   | ✅  | ☐          |
 | 12  | **Tổng thể**                        | Đánh giá chung về toàn bộ quá trình thực tập                                                     | ✅  | ☐   | ☐          |
 
 ### Cần cải thiện
@@ -33,3 +33,4 @@ Về tác phong, tôi luôn cố gắng hoàn thành tốt nhiệm vụ, tuân t
 - Cải thiện về vấn đề tiếp thu kiến thức cũng như thực hiện trong dự án.
 - Cải thiện việc tiếp hiểu và thực hành các dịch vụ AWS và các nền tảng khác.
 - Về việc làm việc nhóm thì nên có những giao tiếp rõ hơn về dự án và cùng nhau thực hiện.
+- Cải thiện khả năng quản lý công việc và kiểm tra yêu cầu: Mình đã có lúc chưa đọc và kiểm tra kỹ toàn bộ yêu cầu, dẫn đến việc bỏ sót một số nội dung trong báo cáo. Vì vậy, mình cần rèn luyện thói quen đọc kỹ yêu cầu, lập danh sách công việc và kiểm tra lại toàn bộ trước khi hoàn thành.
