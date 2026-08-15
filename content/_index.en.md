@@ -6,29 +6,42 @@ chapter: false
 ---
 
 # Internship Report
-### Student Information
 
-- **Full Name:** Nguyen Ho Phuong Tay
-- **Phone Number:** +84 846777901
-- **Email:** phuongtay52663@gmail.com
-- **University:** Sai Gon University
-- **Major:** Information Technology
-- **Class:** DCT1221
+---
 
-- **Internship Company:** Amazon Web Services Viet Nam Company Limited
+### 👤 Student Information
 
-- **Internship Position:** Workforce Bootcamp - First Cloud AI Journey
+| | |
+|---|---|
+| **Full Name** | Nguyen Ho Phuong Tay |
+| **Phone Number** | +84 846 777 901 |
+| **Email** | phuongtay52663@gmail.com |
+| **University** | Sai Gon University |
+| **Major** | Information Technology |
+| **Class** | DCT1221 |
 
-- **Internship Duration:** From 22/06/2026 to 15/08/2026
+---
 
-![Your profile picture](/images/avatar.jpg)
+### 🏢 Internship Information
 
-### Report Content
+| | |
+|---|---|
+| **Company** | Amazon Web Services Viet Nam Company Limited |
+| **Position** | Workforce Bootcamp — First Cloud AI Journey |
+| **Duration** | 22/06/2026 — 15/08/2026 |
 
-1.  [Worklog](1-Worklog/)
-2.  [Proposal](2-Proposal/)
-3.  [BlogsPosted](3-BlogsPosted/)
-4.  [Events Participated](4-EventParticipated/)
-5.  [Workshop](5-Workshop/)
-6.  [Self-evaluation](6-Self-evaluation/)
-7.  [Sharing and Feedback](7-Feedback/)
+---
+
+![Profile picture](/images/avatar.jpg)
+
+---
+
+### 📋 Report Contents
+
+1. [Worklog](1-Worklog/)
+2. [Proposal](2-Proposal/)
+3. [Blogs Posted](3-BlogsPosted/)
+4. [Events Participated](4-EventParticipated/)
+5. [Workshop](5-Workshop/)
+6. [Self-evaluation](6-Self-evaluation/)
+7. [Sharing & Feedback](7-Feedback/)
