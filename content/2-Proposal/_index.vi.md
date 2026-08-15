@@ -5,104 +5,192 @@ weight: 2
 chapter: false
 pre: " <b> 2. </b> "
 ---
-{{% notice warning %}}
-⚠️ **Lưu ý:** Các thông tin dưới đây chỉ nhằm mục đích tham khảo, vui lòng **không sao chép nguyên văn** cho bài báo cáo của bạn kể cả warning này.
-{{% /notice %}}
 
-Tại phần này, bạn cần tóm tắt các nội dung trong workshop mà bạn **dự tính** sẽ làm.
+# RAG Knowledge Assistant
 
-# IoT Weather Platform for Lab Research  
-## Giải pháp AWS Serverless hợp nhất cho giám sát thời tiết thời gian thực  
+## Giải pháp AWS Serverless cho hỏi đáp tài liệu nội bộ
 
-### 1. Tóm tắt điều hành  
-IoT Weather Platform được thiết kế dành cho nhóm *ITea Lab* tại TP. Hồ Chí Minh nhằm nâng cao khả năng thu thập và phân tích dữ liệu thời tiết. Nền tảng hỗ trợ tối đa 5 trạm thời tiết, có khả năng mở rộng lên 10–15 trạm, sử dụng thiết bị biên Raspberry Pi kết hợp cảm biến ESP32 để truyền dữ liệu qua MQTT. Nền tảng tận dụng các dịch vụ AWS Serverless để cung cấp giám sát thời gian thực, phân tích dự đoán và tiết kiệm chi phí, với quyền truy cập giới hạn cho 5 thành viên phòng lab thông qua Amazon Cognito.  
+---
 
-### 2. Tuyên bố vấn đề  
-*Vấn đề hiện tại*  
-Các trạm thời tiết hiện tại yêu cầu thu thập dữ liệu thủ công, khó quản lý khi có nhiều trạm. Không có hệ thống tập trung cho dữ liệu hoặc phân tích thời gian thực, và các nền tảng bên thứ ba thường tốn kém và quá phức tạp.  
+### 1. Tóm tắt
 
-*Giải pháp*  
-Nền tảng sử dụng AWS IoT Core để tiếp nhận dữ liệu MQTT, AWS Lambda và API Gateway để xử lý, Amazon S3 để lưu trữ (bao gồm data lake), và AWS Glue Crawlers cùng các tác vụ ETL để trích xuất, chuyển đổi, tải dữ liệu từ S3 data lake sang một S3 bucket khác để phân tích. AWS Amplify với Next.js cung cấp giao diện web, và Amazon Cognito đảm bảo quyền truy cập an toàn. Tương tự như Thingsboard và CoreIoT, người dùng có thể đăng ký thiết bị mới và quản lý kết nối, nhưng nền tảng này hoạt động ở quy mô nhỏ hơn và phục vụ mục đích sử dụng nội bộ. Các tính năng chính bao gồm bảng điều khiển thời gian thực, phân tích xu hướng và chi phí vận hành thấp.  
+Dự án này xuất phát từ một bài toán thực tế mà nhiều tổ chức đang gặp phải: tài liệu nội bộ thì nhiều, nhưng tra cứu lại chậm và không hiệu quả.
 
-*Lợi ích và hoàn vốn đầu tư (ROI)*  
-Giải pháp tạo nền tảng cơ bản để các thành viên phòng lab phát triển một nền tảng IoT lớn hơn, đồng thời cung cấp nguồn dữ liệu cho những người nghiên cứu AI phục vụ huấn luyện mô hình hoặc phân tích. Nền tảng giảm bớt báo cáo thủ công cho từng trạm thông qua hệ thống tập trung, đơn giản hóa quản lý và bảo trì, đồng thời cải thiện độ tin cậy dữ liệu. Chi phí hàng tháng ước tính 0,66 USD (theo AWS Pricing Calculator), tổng cộng 7,92 USD cho 12 tháng. Tất cả thiết bị IoT đã được trang bị từ hệ thống trạm thời tiết hiện tại, không phát sinh chi phí phát triển thêm. Thời gian hoàn vốn 6–12 tháng nhờ tiết kiệm đáng kể thời gian thao tác thủ công.  
+**RAG Knowledge Assistant** là một chatbot hỏi đáp tài liệu nội bộ, được xây dựng trên nền kiến trúc **RAG (Retrieval-Augmented Generation)**. Thay vì chỉ dựa vào kiến thức huấn luyện sẵn của LLM, hệ thống cho phép nhân viên tải lên tài liệu thực tế (PDF, ảnh scan, văn bản thuần) và nhận câu trả lời được đối chiếu trực tiếp với nội dung đó.
 
-### 3. Kiến trúc giải pháp  
-Nền tảng áp dụng kiến trúc AWS Serverless để quản lý dữ liệu từ 5 trạm dựa trên Raspberry Pi, có thể mở rộng lên 15 trạm. Dữ liệu được tiếp nhận qua AWS IoT Core, lưu trữ trong S3 data lake và xử lý bởi AWS Glue Crawlers và ETL jobs để chuyển đổi và tải vào một S3 bucket khác cho mục đích phân tích. Lambda và API Gateway xử lý bổ sung, trong khi Amplify với Next.js cung cấp bảng điều khiển được bảo mật bởi Cognito.  
+Toàn bộ hệ thống chạy trên **AWS Serverless** — Lambda, SQS, Amazon Bedrock, DynamoDB — kết hợp với Terraform để đảm bảo hạ tầng nhất quán, có thể review và tái dựng dễ dàng. Ngoài luồng hỏi đáp chính, hệ thống còn có: semantic cache để kiểm soát chi phí, kiểm duyệt nội dung qua Bedrock Guardrails, giám sát vận hành thời gian thực, và vòng đánh giá chất lượng tự động hàng ngày bằng framework RAGAS.
 
-![IoT Weather Station Architecture](/images/2-Proposal/edge_architecture.jpeg)
+---
 
-![IoT Weather Platform Architecture](/images/2-Proposal/platform_architecture.jpeg)
+### 2. Vấn đề & Giải pháp
 
-*Dịch vụ AWS sử dụng*  
-- *AWS IoT Core*: Tiếp nhận dữ liệu MQTT từ 5 trạm, mở rộng lên 15.  
-- *AWS Lambda*: Xử lý dữ liệu và kích hoạt Glue jobs (2 hàm).  
-- *Amazon API Gateway*: Giao tiếp với ứng dụng web.  
-- *Amazon S3*: Lưu trữ dữ liệu thô (data lake) và dữ liệu đã xử lý (2 bucket).  
-- *AWS Glue*: Crawlers lập chỉ mục dữ liệu, ETL jobs chuyển đổi và tải dữ liệu.  
-- *AWS Amplify*: Lưu trữ giao diện web Next.js.  
-- *Amazon Cognito*: Quản lý quyền truy cập cho người dùng phòng lab.  
+#### Vấn đề
 
-*Thiết kế thành phần*  
-- *Thiết bị biên*: Raspberry Pi thu thập và lọc dữ liệu cảm biến, gửi tới IoT Core.  
-- *Tiếp nhận dữ liệu*: AWS IoT Core nhận tin nhắn MQTT từ thiết bị biên.  
-- *Lưu trữ dữ liệu*: Dữ liệu thô lưu trong S3 data lake; dữ liệu đã xử lý lưu ở một S3 bucket khác.  
-- *Xử lý dữ liệu*: AWS Glue Crawlers lập chỉ mục dữ liệu; ETL jobs chuyển đổi để phân tích.  
-- *Giao diện web*: AWS Amplify lưu trữ ứng dụng Next.js cho bảng điều khiển và phân tích thời gian thực.  
-- *Quản lý người dùng*: Amazon Cognito giới hạn 5 tài khoản hoạt động.  
+Khi bắt đầu nhìn vào bài toán quản lý tri thức nội bộ, có ba điểm mà tôi nhận ra là thực sự đáng giải quyết:
 
-### 4. Triển khai kỹ thuật  
-*Các giai đoạn triển khai*  
-Dự án gồm 2 phần — thiết lập trạm thời tiết biên và xây dựng nền tảng thời tiết — mỗi phần trải qua 4 giai đoạn:  
-1. *Nghiên cứu và vẽ kiến trúc*: Nghiên cứu Raspberry Pi với cảm biến ESP32 và thiết kế kiến trúc AWS Serverless (1 tháng trước kỳ thực tập).  
-2. *Tính toán chi phí và kiểm tra tính khả thi*: Sử dụng AWS Pricing Calculator để ước tính và điều chỉnh (Tháng 1).  
-3. *Điều chỉnh kiến trúc để tối ưu chi phí/giải pháp*: Tinh chỉnh (ví dụ tối ưu Lambda với Next.js) để đảm bảo hiệu quả (Tháng 2).  
-4. *Phát triển, kiểm thử, triển khai*: Lập trình Raspberry Pi, AWS services với CDK/SDK và ứng dụng Next.js, sau đó kiểm thử và đưa vào vận hành (Tháng 2–3).  
+**Thứ nhất**, tài liệu của doanh nghiệp thường nằm rải rác trong hàng trăm file PDF và ảnh scan. Mỗi lần cần tra cứu, nhân viên phải mở từng file, tìm thủ công — vừa chậm, vừa lặp đi lặp lại không cần thiết.
 
-*Yêu cầu kỹ thuật*  
-- *Trạm thời tiết biên*: Cảm biến (nhiệt độ, độ ẩm, lượng mưa, tốc độ gió), vi điều khiển ESP32, Raspberry Pi làm thiết bị biên. Raspberry Pi chạy Raspbian, sử dụng Docker để lọc dữ liệu và gửi 1 MB/ngày/trạm qua MQTT qua Wi-Fi.  
-- *Nền tảng thời tiết*: Kiến thức thực tế về AWS Amplify (lưu trữ Next.js), Lambda (giảm thiểu do Next.js xử lý), AWS Glue (ETL), S3 (2 bucket), IoT Core (gateway và rules), và Cognito (5 người dùng). Sử dụng AWS CDK/SDK để lập trình (ví dụ IoT Core rules tới S3). Next.js giúp giảm tải Lambda cho ứng dụng web fullstack.  
+**Thứ hai**, các LLM có sẵn tuy trả lời trôi chảy, nhưng không được đối chiếu với nội dung nội bộ thực tế. Điều này dẫn đến hiện tượng *hallucination* — câu trả lời sai nhưng nghe rất "tự tin" — đặc biệt nguy hiểm trong môi trường doanh nghiệp.
 
-### 5. Lộ trình & Mốc triển khai  
-- *Trước thực tập (Tháng 0)*: 1 tháng lên kế hoạch và đánh giá trạm cũ.  
-- *Thực tập (Tháng 1–3)*:  
-    - Tháng 1: Học AWS và nâng cấp phần cứng.  
-    - Tháng 2: Thiết kế và điều chỉnh kiến trúc.  
-    - Tháng 3: Triển khai, kiểm thử, đưa vào sử dụng.  
-- *Sau triển khai*: Nghiên cứu thêm trong vòng 1 năm.  
+**Thứ ba**, thường không có cách nào đo lường định lượng xem chatbot có đang trả lời đúng không. Hầu hết các nhóm đánh giá bằng cảm tính: "có vẻ ổn" — mà điều đó rõ ràng là chưa đủ.
 
-### 6. Ước tính ngân sách  
-Có thể xem chi phí trên [AWS Pricing Calculator](https://calculator.aws/#/estimate?id=621f38b12a1ef026842ba2ddfe46ff936ed4ab01)  
-Hoặc tải [tệp ước tính ngân sách](../attachments/budget_estimation.pdf).  
+#### Giải pháp
 
-*Chi phí hạ tầng*  
-- AWS Lambda: 0,00 USD/tháng (1.000 request, 512 MB lưu trữ).  
-- S3 Standard: 0,15 USD/tháng (6 GB, 2.100 request, 1 GB quét).  
-- Truyền dữ liệu: 0,02 USD/tháng (1 GB vào, 1 GB ra).  
-- AWS Amplify: 0,35 USD/tháng (256 MB, request 500 ms).  
-- Amazon API Gateway: 0,01 USD/tháng (2.000 request).  
-- AWS Glue ETL Jobs: 0,02 USD/tháng (2 DPU).  
-- AWS Glue Crawlers: 0,07 USD/tháng (1 crawler).  
-- MQTT (IoT Core): 0,08 USD/tháng (5 thiết bị, 45.000 tin nhắn).  
+Thay vì xây dựng một pipeline phức tạp nhiều tầng, tôi chọn hướng thiết kế tập trung vào **bốn luồng xử lý rõ ràng**, mỗi luồng có trách nhiệm cụ thể:
 
-*Tổng*: 0,7 USD/tháng, 8,40 USD/12 tháng  
-- *Phần cứng*: 265 USD một lần (Raspberry Pi 5 và cảm biến).  
+- Tài liệu được tiếp nhận qua **Amazon S3**, đưa qua hàng đợi đệm **Amazon SQS** (kèm Dead Letter Queue để đảm bảo retry an toàn), rồi **AWS Lambda** kết hợp **Amazon Textract** để số hóa các file scan.
 
-### 7. Đánh giá rủi ro  
-*Ma trận rủi ro*  
-- Mất mạng: Ảnh hưởng trung bình, xác suất trung bình.  
-- Hỏng cảm biến: Ảnh hưởng cao, xác suất thấp.  
-- Vượt ngân sách: Ảnh hưởng trung bình, xác suất thấp.  
+- Nội dung trích xuất được chia thành chunk cha/con, tạo embedding qua **Amazon Bedrock**, và lưu trực tiếp trong **Amazon DynamoDB** dưới dạng vector đóng gói cùng dữ liệu BM25. Một lớp hybrid search tự viết bằng Python (cosine similarity + BM25, hợp nhất qua Reciprocal Rank Fusion) chạy ngay trong Lambda — không cần đến một search engine riêng.
 
-*Chiến lược giảm thiểu*  
-- Mạng: Lưu trữ cục bộ trên Raspberry Pi với Docker.  
-- Cảm biến: Kiểm tra định kỳ, dự phòng linh kiện.  
-- Chi phí: Cảnh báo ngân sách AWS, tối ưu dịch vụ.  
+- Câu hỏi từ người dùng đi qua **Amazon API Gateway** (bảo vệ bởi **Amazon Cognito**), kiểm tra cache **ElastiCache Serverless** trước để tránh gọi Bedrock không cần thiết, truy xuất ngữ cảnh qua hybrid search, rồi sinh câu trả lời qua **Amazon Bedrock (Claude 3)** được lọc qua **Bedrock Guardrails**.
 
-*Kế hoạch dự phòng*  
-- Quay lại thu thập thủ công nếu AWS gặp sự cố.  
-- Sử dụng CloudFormation để khôi phục cấu hình liên quan đến chi phí.  
+- Hệ thống giám sát dùng **CloudWatch + SNS + AWS Chatbot** để phân loại và định tuyến cảnh báo tới Slack theo mức độ nghiêm trọng. **EventBridge Scheduler** kích hoạt một Lambda chạy hàng ngày để đánh giá các chỉ số RAGAS (Faithfulness, Answer Relevancy, Context Precision) trên các hội thoại gần nhất.
 
-### 8. Kết quả kỳ vọng  
-*Cải tiến kỹ thuật*: Dữ liệu và phân tích thời gian thực thay thế quy trình thủ công. Có thể mở rộng tới 10–15 trạm.  
-*Giá trị dài hạn*: Nền tảng dữ liệu 1 năm cho nghiên cứu AI, có thể tái sử dụng cho các dự án tương lai.
+#### Tại sao thiết kế như vậy?
+
+Một quyết định quan trọng là **không dùng search engine riêng** (như OpenSearch Serverless). Thay vào đó, lưu vector và dữ liệu BM25 trực tiếp trong DynamoDB. Điều này giúp loại bỏ một khoản chi phí nền chạy liên tục, giữ lớp retrieval ở mức pay-per-use — phù hợp với tinh thần serverless của toàn bộ hệ thống.
+
+---
+
+### 3. Kiến trúc giải pháp
+
+Toàn bộ hạ tầng được quản lý qua Terraform để mọi thay đổi đều có thể review qua Pull Request, và có thể dựng lại từ đầu bất cứ lúc nào.
+
+![Sơ đồ kiến trúc tổng thể RAG Knowledge Assistant](/images/5-Workshop/5.1-Workshop-overview/aws-new.drawio.png)
+
+#### Dịch vụ AWS sử dụng
+
+| Dịch vụ | Vai trò |
+|---|---|
+| **AWS Lambda** | Chạy logic xử lý tài liệu, chat engine, đánh giá RAGAS (Python 3.12) |
+| **Amazon S3** | Lưu tài liệu gốc và kết quả đánh giá RAGAS |
+| **Amazon SQS** | Đệm sự kiện xử lý tài liệu, kèm Dead Letter Queue |
+| **Amazon Textract** | OCR cho file scan và ảnh |
+| **Amazon Bedrock** | Sinh embedding (Titan/Cohere) và câu trả lời (Claude 3), kiểm soát qua Guardrails |
+| **Amazon DynamoDB** | Lưu chunk tài liệu, vector, dữ liệu BM25, lịch sử hội thoại và feedback |
+| **Amazon API Gateway** | Cung cấp endpoint chat, upload, kiểm tra trạng thái |
+| **Amazon Cognito** | Xác thực người dùng trước khi cấp quyền API |
+| **Amazon ElastiCache Serverless** | Cache cặp hỏi-đáp gần đây để giảm độ trễ và chi phí |
+| **Amazon CloudWatch** | Thu thập log/metric, dashboard tùy chỉnh và cảnh báo |
+| **Amazon SNS + AWS Chatbot** | Định tuyến cảnh báo theo mức nghiêm trọng tới Slack |
+| **Amazon EventBridge Scheduler** | Kích hoạt job đánh giá RAGAS hàng ngày |
+| **Terraform (HCP Terraform)** | Quản lý toàn bộ hạ tầng dưới dạng code, remote state |
+
+#### Bốn luồng xử lý chính
+
+**Luồng 1 — Data Ingestion**
+S3 nhận file tải lên → S3 Event kích hoạt SQS → Lambda (Document Processor) trích xuất văn bản (Textract cho file scan) → chia chunk cha/con → tạo embedding + BM25 → lưu vào DynamoDB.
+
+**Luồng 2 — Realtime Q&A**
+API Gateway (sau Cognito) → Chat Engine Lambda kiểm tra cache → hybrid search trên DynamoDB → Bedrock sinh câu trả lời qua Guardrails → ghi hội thoại vào DynamoDB.
+
+**Luồng 3 — Monitoring & Alert**
+CloudWatch Alarms theo dõi lỗi Lambda, tỷ lệ 5xx, độ sâu DLQ, throttle của Bedrock → publish tới SNS topic phân theo mức nghiêm trọng → định tuyến tới Slack qua AWS Chatbot.
+
+**Luồng 4 — RAG Evaluation**
+EventBridge Scheduler → Lambda lấy mẫu hội thoại gần đây → chấm điểm RAGAS → lưu kết quả vào S3 → publish điểm tổng hợp lên CloudWatch.
+
+---
+
+### 4. Triển khai kỹ thuật
+
+#### Các giai đoạn phát triển
+
+Dự án theo chu kỳ **5 tuần** sau khi chốt đề tài, mỗi giai đoạn xây dựng trực tiếp trên nền của giai đoạn trước:
+
+1. **Nghiên cứu & thiết kế kiến trúc** — Chốt đề tài, đánh giá lựa chọn giữa Serverless tự xây và các dịch vụ managed sẵn có (ví dụ Bedrock Knowledge Bases), hoàn thiện proposal cùng sơ đồ kiến trúc tổng thể và luồng dữ liệu.
+
+2. **Chuẩn bị môi trường** — Thiết lập cấu trúc project Terraform/IaC, xin cấp quyền truy cập model trên Amazon Bedrock (Claude 3, Titan Embeddings), cấu hình môi trường phát triển.
+
+3. **Xây dựng các luồng cốt lõi** — Triển khai Luồng 1 (Data Ingestion) trước, sau đó tới Luồng 2 (Realtime Q&A kèm Semantic Cache), kiểm thử thực tế từng luồng trước khi chuyển sang luồng tiếp theo.
+
+4. **Quan sát & chất lượng** — Triển khai Luồng 3 (Monitoring & Alerting) và Luồng 4 (đánh giá RAGAS) để hệ thống có thể tự phát hiện sự cố và tự đo lường chất lượng câu trả lời.
+
+5. **Hoàn thiện & bàn giao** — Tinh chỉnh tham số retrieval dựa trên kết quả RAGAS, kiểm thử tải, rà soát quyền IAM, tái cấu trúc Terraform theo module, hoàn thiện tài liệu và demo trực tiếp.
+
+#### Yêu cầu kỹ thuật
+
+- **Tài khoản & vùng**: AWS account ở **us-east-1 (N. Virginia)** — vùng hỗ trợ đầy đủ các model Bedrock cần dùng, cộng thêm tài khoản HCP Terraform để quản lý remote state.
+- **Công cụ**: Terraform 1.5+, AWS CLI v2, Python 3.12, Git, và code editor.
+- **Quyền hạn**: IAM policy triển khai được giới hạn đúng phạm vi các dịch vụ sử dụng — tuân thủ nguyên tắc least privilege xuyên suốt.
+- **CI/CD**: GitHub Actions kiểm tra và plan trên mọi Pull Request; `terraform apply` chỉ được kích hoạt thủ công sau khi có review, không tự động merge.
+
+---
+
+### 5. Lộ trình & Mốc triển khai
+
+_Lộ trình 5 tuần, sau 2 tuần học nền tảng AWS_
+
+| Tuần | Mục tiêu |
+|---|---|
+| **Tuần 1** | Lên ý tưởng, chốt proposal, thiết kế kiến trúc, chuẩn bị môi trường |
+| **Tuần 2** | Hoàn thành Luồng 1 — Data Ingestion end-to-end (S3 → SQS → Lambda → OCR → embedding) |
+| **Tuần 3** | Hoàn thành Luồng 2 — Realtime Q&A với API có xác thực, cache và Guardrails |
+| **Tuần 4** | Hoàn thành Luồng 3 — Monitoring & Alerting, và Luồng 4 — đánh giá RAGAS tự động |
+| **Tuần 5** | Tinh chỉnh retrieval, kiểm thử tải, rà soát IAM, tái cấu trúc IaC, demo trực tiếp |
+
+---
+
+### 6. Ước tính ngân sách
+
+Nhờ quyết định lưu vector và BM25 trong DynamoDB (pay-per-request) thay vì triển khai search engine riêng, chi phí nền chạy liên tục chính chỉ còn đến từ **Amazon ElastiCache Serverless** (dung lượng tối thiểu được cấp phát), cộng thêm chi phí gọi Bedrock theo lượt.
+
+**Chi phí ước tính khi hệ thống đang chạy**: ~**2,5 USD/ngày**
+
+ElastiCache Serverless là yếu tố chi phí chính; Lambda, S3, SQS, DynamoDB và API Gateway tính phí theo lượt sử dụng và chiếm tỷ trọng nhỏ hơn nhiều ở quy mô này.
+
+**Các biện pháp kiểm soát chi phí:**
+
+- Dùng DynamoDB thay search engine riêng → tránh thêm chi phí nền cho lớp retrieval.
+- Cache exact-match → giảm gọi Bedrock lặp lại cho câu hỏi giống nhau.
+- Script teardown/rebuild riêng → phá hủy toàn bộ hạ tầng (kèm sao lưu) khi không dùng, tránh phát sinh chi phí cố định hàng tháng.
+- AWS Budget alert → giám sát chi tiêu độc lập với vòng đời hạ tầng chính.
+
+---
+
+### 7. Đánh giá rủi ro
+
+Bất kỳ dự án kỹ thuật nào cũng có rủi ro. Điều quan trọng là nhận diện chúng sớm và có kế hoạch ứng phó rõ ràng, thay vì để đến khi xảy ra mới xử lý.
+
+#### Ma trận rủi ro
+
+| Rủi ro | Ảnh hưởng | Xác suất |
+|---|---|---|
+| Chậm được cấp quyền truy cập model Bedrock | Trung bình | Trung bình |
+| Chất lượng retrieval thấp (hallucination, ngữ cảnh không khớp) | Cao | Trung bình |
+| Vượt ngân sách do ElastiCache Serverless chạy nền | Trung bình | Thấp |
+| Cấu hình sai quyền IAM giữa các dịch vụ | Cao | Thấp |
+| Lambda bị giới hạn concurrency khi tải cao | Trung bình | Thấp |
+
+#### Chiến lược giảm thiểu
+
+- **Bedrock**: Gửi yêu cầu cấp quyền truy cập model ngay trong giai đoạn chuẩn bị môi trường, trước khi code phụ thuộc vào nó.
+- **Chất lượng retrieval**: Xây dựng vòng đánh giá RAGAS sớm — để khi chất lượng giảm, ta có con số cụ thể để tinh chỉnh (kích thước chunk, trọng số hybrid search), thay vì chỉ cảm nhận.
+- **Chi phí**: AWS Budget alert + script phá hủy hạ tầng khi không dùng.
+- **IAM**: Áp dụng least-privilege từ đầu, thực hiện một đợt rà soát quyền hạn riêng trước khi bàn giao.
+- **Concurrency**: Kiểm thử tải trước buổi demo để phát hiện giới hạn sớm và có phương án mở rộng sẵn.
+
+#### Kế hoạch dự phòng
+
+- Nếu cấp quyền Bedrock bị chậm → tiếp tục phát triển hạ tầng bằng lệnh gọi mock, tích hợp model thật khi được cấp quyền.
+- Nếu chi phí tiệm cận ngưỡng → chạy ngay script teardown để phá hủy các tài nguyên không thiết yếu.
+- Nếu chất lượng retrieval không thể cải thiện đủ trong thời gian cho phép → ghi nhận rõ ràng khoảng cách và đưa vào danh sách việc tiếp theo, thay vì âm thầm bàn giao hệ thống chưa đạt yêu cầu.
+
+---
+
+### 8. Kết quả kỳ vọng
+
+#### Về mặt kỹ thuật
+
+- Tự động hóa việc tiếp nhận tài liệu và OCR, thay thế hoàn toàn xử lý thủ công.
+- Câu trả lời được cache trả về trong dưới một giây với câu hỏi lặp lại, so với vài giây cho một lượt gọi Bedrock mới.
+- Đánh giá RAGAS tự động hàng ngày thay thế việc kiểm tra chất lượng bằng cảm tính — có số liệu cụ thể để theo dõi và cải thiện.
+- Cảnh báo vận hành thời gian thực, phân loại theo mức nghiêm trọng, giúp rút ngắn thời gian phát hiện sự cố.
+
+#### Giá trị dài hạn
+
+Dự án này không chỉ là một bài tập kỹ thuật. Kết thúc dự án, tôi kỳ vọng có được:
+
+- Một **kiến trúc tham chiếu** hoàn chỉnh, có tài liệu, có thể tái sử dụng cho các hệ thống GenAI Serverless trên AWS.
+- Kinh nghiệm thực tế với **Infrastructure as Code (Terraform)** và thiết kế theo hướng sự kiện (event-driven).
+- Một nền tảng có thể mở rộng cho các bài toán quản lý tri thức doanh nghiệp rộng hơn trong tương lai.
