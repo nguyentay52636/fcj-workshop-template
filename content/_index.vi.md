@@ -15,7 +15,7 @@ chapter: false
 |---|---|
 | **Họ và tên** | Nguyễn Hồ Phương Tây |
 | **Số điện thoại** | +84 846 777 901 |
-| **Email** | phuongtay52663@gmail.com |
+| **Email** | phuongtay52636@gmail.com |
 | **Trường** | Đại học Sài Gòn |
 | **Ngành** | Công nghệ thông tin |
 | **Lớp** | DCT1221 |

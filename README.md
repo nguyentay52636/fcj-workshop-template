@@ -14,7 +14,7 @@ This repository serves as a structured online report portfolio for the AWS Vietn
 |-------|--------|
 | **Full Name** | Nguyen Ho Phuong Tay |
 | **Phone** | +84 846777901 |
-| **Email** | phuongtay52663@gmail.com |
+| **Email** | phuongtay52636@gmail.com |
 | **University** | Sai Gon University |
 | **Major** | Information Technology (Class: DCT1221) |
 | **Company** | Amazon Web Services Vietnam Company Limited |
