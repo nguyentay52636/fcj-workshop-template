@@ -10,7 +10,10 @@ pre: " <b> 4.2. </b> "
 
 ### 1. Event Overview
 - **Date & Time**: 9:00 AM - 12:00 PM, Saturday, August 1, 2026
-- **Location**: 26th Floor, Bitexco Financial Tower, 2 Hai Trieu St., Saigon, Ho Chi Minh City 700000, Vietnam.
+- **Location**: 26th Floor, Bitexco Financial Tower, 2 Hai Trieu St., Ho Chi Minh City
+- **Workshop series**: 3-Day AgentForge Workshop — Day 1 of 3
+- **Theme**: Foundations & Agent Setup
+- **Topic**: Introduction to Amazon Bedrock AgentCore
 - **Role**: Attendee
 
 ### 2. Speaker List

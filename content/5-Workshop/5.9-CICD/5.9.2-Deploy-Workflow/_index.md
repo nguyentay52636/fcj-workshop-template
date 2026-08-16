@@ -68,10 +68,9 @@ The workflow also sets `concurrency: group: deploy-production` with `cancel-in-p
 
 {{% notice note %}}
 `workflow_dispatch` is the **free gate** that replaces Required reviewers, with the same intent: **no deliberate click → nothing gets applied**. You do not always need the “standard” feature — a simpler mechanism that meets the safety goal (no surprise auto-apply) is enough when the standard feature is unavailable.
-{{% /notice %}}
 
-![Deploy trigger before vs after the fix](../images/02-deploy-trigger-before-after.png)
-_Before: push auto-ran apply (Required reviewer never appeared). After: manual “Run workflow” button in the Actions tab._
+**Before → after:** push to `main` used to auto-run apply (Required reviewer never appeared). After the fix, deploy only starts from the manual **Run workflow** button in the Actions tab.
+{{% /notice %}}
 
 ---
 

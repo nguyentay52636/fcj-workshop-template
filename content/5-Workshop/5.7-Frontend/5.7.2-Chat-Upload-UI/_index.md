@@ -97,8 +97,9 @@ async function pollStatus(documentId, { excludeAwaitingOcr = false } = {}) {
 }
 ```
 
-![OCR confirmation dialog with Yes/No](../images/05-ocr-confirm-dialog.png)
-_OCR confirm box built as a Promise waiting for the user click._
+{{% notice tip %}}
+When `/status` returns `awaiting_ocr_confirmation`, the UI shows a Yes/No confirm box built as a Promise that waits for the user click before calling `/documents-decision`.
+{{% /notice %}}
 
 #### Right pane — real timings, compressed animation
 

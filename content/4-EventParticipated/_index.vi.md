@@ -27,6 +27,8 @@ Trong quá trình thực tập, em đã tham gia 3 events, với mỗi event là
 
 &emsp;**Địa điểm:** Tầng 26, tòa nhà Bitexco Financial Tower, số 02 đường Hải Triều, TP. Hồ Chí Minh
 
+&emsp;**Topic:** Introduction to Amazon Bedrock AgentCore
+
 &emsp;**Vai trò trong sự kiện:** Người tham dự
 
 ---

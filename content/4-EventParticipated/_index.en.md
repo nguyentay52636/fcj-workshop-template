@@ -29,6 +29,8 @@ During my internship, I participated in three events. Each one was a memorable e
 
 &emsp;**Location:** 26th Floor, Bitexco Financial Tower, 02 Hai Trieu Street, Ho Chi Minh City  
 
+&emsp;**Topic:** Introduction to Amazon Bedrock AgentCore  
+
 &emsp;**Role:** Attendee  
 
 ---

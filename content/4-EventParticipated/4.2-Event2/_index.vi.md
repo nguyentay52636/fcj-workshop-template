@@ -9,8 +9,11 @@ pre: " <b> 4.2. </b> "
 # Bài thu hoạch: “Agent Forge - Deepdive Day 1”
 
 ### 1. Tổng quan về sự kiện
-- **Thời gian**: 9:00AM - 12:00PM, Thứ 7, 01/08/2026
-- **Địa điểm**: Tầng 26, Bitexco Financial Tower, 2 Đ. Hải Triều, Sài Gòn, Hồ Chí Minh 700000, Việt Nam.
+- **Thời gian**: 9:00 – 12:00, Thứ 7, 01/08/2026
+- **Địa điểm**: Tầng 26, Bitexco Financial Tower, 2 Hải Triều, TP. Hồ Chí Minh
+- **Chuỗi workshop**: 3-Day AgentForge Workshop — Day 1 / 3
+- **Chủ đề**: Foundations & Agent Setup
+- **Topic**: Introduction to Amazon Bedrock AgentCore
 - **Vai trò**: Người tham dự
 
 ### 2. Danh sách diễn giả

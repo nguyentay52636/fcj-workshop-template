@@ -1,4 +1,5 @@
-baseURL = "/"
+# Use a full URL so `hugo server` prints http://localhost:... (bare "/" becomes //localhost)
+baseURL = "http://localhost:1313/"
 relativeURLs = false
 canonifyURLs = false
 # Vietnamese is default → no URL prefix (/7-feedback/)

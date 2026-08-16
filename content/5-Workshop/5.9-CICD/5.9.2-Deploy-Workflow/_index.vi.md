@@ -68,6 +68,8 @@ Workflow còn đặt `concurrency: group: deploy-production` với `cancel-in-pr
 
 {{% notice note %}}
 `workflow_dispatch` là **"cổng chặn" miễn phí** thay Required reviewers, cùng mục tiêu: **không có cú click chủ động thì không có gì bị apply**. Không phải lúc nào cũng cần đúng tính năng “chuẩn” — cơ chế đơn giản hơn nhưng đạt cùng mục tiêu an toàn vẫn hợp lý khi tính năng chuẩn không khả dụng.
+
+**Trước → sau:** push lên `main` từng tự chạy apply (Required reviewer không bao giờ hiện). Sau khi sửa, deploy chỉ bắt đầu khi bấm **Run workflow** thủ công trong tab Actions.
 {{% /notice %}}
 
 ---

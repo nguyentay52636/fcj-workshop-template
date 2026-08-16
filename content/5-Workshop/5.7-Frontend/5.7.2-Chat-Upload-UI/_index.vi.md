@@ -97,6 +97,10 @@ async function pollStatus(documentId, { excludeAwaitingOcr = false } = {}) {
 }
 ```
 
+{{% notice tip %}}
+Khi `/status` trả `awaiting_ocr_confirmation`, giao diện hiện hộp Yes/No (Promise chờ người dùng bấm) trước khi gọi `/documents-decision`.
+{{% /notice %}}
+
 #### Pane phải — thời gian thật, animation nén
 
 | Luồng        | Nguồn thời gian                                                      |
