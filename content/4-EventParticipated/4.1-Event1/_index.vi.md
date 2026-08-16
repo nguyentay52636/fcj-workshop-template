@@ -165,12 +165,8 @@ Thông qua sự kiện, em nhận ra rằng sự thành công không chỉ đế
 
 Một số hình ảnh trong buổi sự kiện:
 
-![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_01.jpg)
+![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/event1_01.jpg)
 
-![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_02.jpg)
+![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/event1_02.jpg)
 
-![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_03.jpg)
-
-![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_04.jpg)
-
-![FCAJ x Agentic AI Build Week](/images/4-Events/Events-1/event1_05.jpg)
+![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/event1_03.jpg)
