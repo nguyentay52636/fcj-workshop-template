@@ -8,7 +8,17 @@ pre: " <b> 5.7.4. </b> "
 
 After [5.7.1](../5.7.1-Frontend-Architecture-Authentication/)–[5.7.3](../5.7.3-Deployment-Hosting/), I opened `ui/index.html`, pasted connection fields from `terraform output`, and signed in with a Cognito user to run the UI scenarios below against the live stack.
 
+Idle / ready UI (before running scenarios):
+
 ![Two-pane UI during end-to-end testing](/images/5-Workshop/5.7-Frontend/image.png)
+
+**Pass evidence — ingest** (`.txt` uploaded, “Luồng nạp tài liệu” all green / hoàn tất):
+
+![Ingest pipeline pass](/images/5-Workshop/5.7-Frontend/04-ingest-flow-pass.png)
+
+**Pass evidence — Q&A** (question answered, “Luồng hỏi đáp” completed with step timings):
+
+![Q&A pipeline pass](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
 
 #### UI test scenarios
 

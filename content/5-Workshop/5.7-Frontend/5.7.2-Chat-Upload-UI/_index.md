@@ -114,6 +114,16 @@ When `/status` returns `awaiting_ocr_confirmation`, the UI shows a Yes/No confir
 Ask the **same** question again in the **same** session to see a cache hit: usually one lit step, sub-second response, and a `cache hit` tag on the bot message. Use **Phiên mới** when you want a clean multi-turn / rewrite demo instead.
 {{% /notice %}}
 
+#### Live UI evidence
+
+Document ingest completed (S3 → SQS → extract → chunk → embed → DynamoDB):
+
+![Document ingest flow completed](/images/5-Workshop/5.7-Frontend/04-ingest-flow-pass.png)
+
+Q&A flow completed (cache miss → guardrail → embed → hybrid search → Claude Sonnet → write history):
+
+![Q&A flow completed with grounded answer](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
+
 ---
 
 #### Next content

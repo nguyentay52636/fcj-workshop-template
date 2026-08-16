@@ -8,7 +8,17 @@ pre: " <b> 5.7.4. </b> "
 
 Sau [5.7.1](../5.7.1-Frontend-Architecture-Authentication/)–[5.7.3](../5.7.3-Deployment-Hosting/), em mở `ui/index.html`, dán cấu hình từ `terraform output`, đăng nhập user Cognito và chạy các kịch bản giao diện dưới đây trên stack thật.
 
+Giao diện sẵn sàng (trước khi chạy kịch bản):
+
 ![Giao diện 2 cột khi kiểm thử end-to-end](/images/5-Workshop/5.7-Frontend/image.png)
+
+**Bằng chứng Pass — nạp tài liệu** (đã tải `.txt`, tab “Luồng nạp tài liệu” hoàn tất):
+
+![Luồng nạp tài liệu Pass](/images/5-Workshop/5.7-Frontend/04-ingest-flow-pass.png)
+
+**Bằng chứng Pass — hỏi đáp** (đã trả lời, tab “Luồng hỏi đáp” hoàn tất kèm thời gian từng bước):
+
+![Luồng hỏi đáp Pass](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
 
 #### Kịch bản kiểm thử giao diện
 

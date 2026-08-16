@@ -114,6 +114,16 @@ Khi `/status` trả `awaiting_ocr_confirmation`, giao diện hiện hộp Yes/No
 Hỏi lại **y hệt** trong **cùng phiên** để thấy cache hit: thường chỉ sáng 1 bước, phản hồi dưới 1 giây, và tag `cache hit` trên tin nhắn bot. Dùng **Phiên mới** khi muốn demo multi-turn / rewrite từ trạng thái sạch.
 {{% /notice %}}
 
+#### Bằng chứng giao diện thật
+
+Luồng nạp tài liệu hoàn tất (S3 → SQS → trích xuất → chunk → embed → DynamoDB):
+
+![Luồng nạp tài liệu hoàn tất](/images/5-Workshop/5.7-Frontend/04-ingest-flow-pass.png)
+
+Luồng hỏi đáp hoàn tất (cache miss → guardrail → embed → hybrid search → Claude Sonnet → ghi lịch sử):
+
+![Luồng hỏi đáp hoàn tất với câu trả lời grounded](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
+
 ---
 
 #### Nội dung tiếp theo
