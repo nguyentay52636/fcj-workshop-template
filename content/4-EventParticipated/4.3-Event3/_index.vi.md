@@ -49,6 +49,7 @@ Qua **Agent Forge - Deepdive Day 3**, em hiểu rõ hơn việc đưa agent từ
 
 Một số hình ảnh trong buổi sự kiện:
 
-![Agent Forge - Deepdive Day 3](/images/4-EventParticipated/event3_01.jpg)
-
-![Agent Forge - Deepdive Day 3](/images/4-EventParticipated/event3_02.jpg)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start; align-items: stretch; margin: 8px 0;">
+  <img src="/images/4-EventParticipated/event3_01.jpg" alt="Hình ảnh sự kiện 1" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+  <img src="/images/4-EventParticipated/event3_02.jpg" alt="Hình ảnh sự kiện 2" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+</div>

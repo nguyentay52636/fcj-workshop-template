@@ -48,6 +48,9 @@ Through the **Agent Forge - Deepdive Day 1** event, I gained a clearer understan
 
 Here are some photos from the event:
 
-![Agent Forge - Deepdive Day 1](/images/4-EventParticipated/event2_02.jpg)
-
-![Agent Forge - Deepdive Day 1](/images/4-EventParticipated/event2_03.jpg)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start; align-items: stretch; margin: 8px 0;">
+  <img src="/images/4-EventParticipated/event2.jpg" alt="Event photo 1" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+  <img src="/images/4-EventParticipated/event2_1.jpg" alt="Event photo 2" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+  <img src="/images/4-EventParticipated/event2_02.jpg" alt="Event photo 3" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+  <img src="/images/4-EventParticipated/event2_03.jpg" alt="Event photo 4" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+</div>

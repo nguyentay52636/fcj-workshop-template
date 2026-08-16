@@ -136,6 +136,9 @@ Through the event, I realized that success comes not only from mastering technol
 
 Here are some photos from the event:
 
-![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/skien1.jpg)
-
-![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/sukien1.jpg)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: flex-start; align-items: stretch; margin: 8px 0;">
+  <img src="/images/4-EventParticipated/skien1.jpg" alt="Event photo 1" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+  <img src="/images/4-EventParticipated/sukien1.jpg" alt="Event photo 2" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+  <img src="/images/4-EventParticipated/event_t_1.jpg" alt="Event photo 3" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+  <img src="/images/4-EventParticipated/event1_t.jpg" alt="Event photo 4" style="width: 400px; height: 280px; object-fit: cover; border-radius: 8px; box-shadow: 0 2px 6px rgba(0,0,0,0.12);" />
+</div>
