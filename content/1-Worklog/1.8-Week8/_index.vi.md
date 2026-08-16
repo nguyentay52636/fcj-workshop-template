@@ -18,8 +18,8 @@ pre: " <b> 1.8. </b> "
 | Thứ | Công việc                                                                                                                                                                                                                                                            | Ngày bắt đầu | Ngày hoàn thành | Nguồn tài liệu     |
 | --- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------ | ---------------- | -------------------- |
 | 2   | **Rà soát kiến thức AWS nền tảng (Tuần 1-2):**<br>- Tự kiểm tra lại các dịch vụ cốt lõi đã học: IAM, VPC, EC2, S3, RDS, Lightsail, Auto Scaling, CloudWatch, Route 53, DynamoDB, ElastiCache, CloudFront.<br>- Thử tự giải thích lại vài kiến trúc (ví dụ: mô hình VPC/Multi-AZ) mà không xem lại note, để chắc chắn là hiểu thật chứ không chỉ quen mặt.                    | 10/08/2026   | 10/08/2026       | Ghi chú cá nhân       |
-| 3   | **Rà soát toàn bộ project từ đầu đến cuối:**<br>- Đi lại từng luồng của RAG Knowledge Assistant (Ingestion, Realtime QA, Monitoring, Evaluation).<br>- Test lại hệ thống thật: upload một tài liệu mới, hỏi đáp thử, kiểm tra Semantic Cache có hit đúng không, xác nhận job đánh giá RAGAS vẫn chạy đúng lịch.                  | 11/08/2026   | 11/08/2026       | Dự án cá nhân        |
-| 4   | **Đối chiếu kết quả với đề xuất ban đầu:**<br>- So sánh những gì thực sự đã làm được với bản proposal và sơ đồ kiến trúc ở Tuần 3.<br>- Liệt kê các hạng mục đã hoàn thành, hạng mục làm được một phần, và hạng mục còn để ngỏ (ví dụ: rate-limiting cho API, mở rộng bộ dữ liệu đánh giá — đúng như góp ý nhận được ở Tuần 7). | 12/08/2026   | 12/08/2026       | Dự án cá nhân        |
+| 3   | **Rà soát toàn bộ project từ đầu đến cuối:**<br>- Đi lại từng luồng (Ingestion, Realtime QA, Monitoring, Evaluation).<br>- Test lại Luồng 1–3 trên hệ thống thật: upload tài liệu, hỏi đáp, kiểm tra cache hit, xác nhận monitoring còn cảnh báo.<br>- Xác nhận lại Luồng 4 ở mức **Partial** (thiết kế + skeleton; xem Proposal §9 / [5.6](../5-Workshop/5.6-RAGAS/)).                  | 11/08/2026   | 11/08/2026       | Dự án cá nhân        |
+| 4   | **Đối chiếu kết quả với đề xuất ban đầu:**<br>- So sánh bàn giao thật với proposal Tuần 3 và sơ đồ kiến trúc.<br>- Công bố bảng **Done / Partial / Deferred** (Luồng 1–3 Done; Luồng 4 Partial; rate-limiting & bộ eval lớn hơn Deferred). | 12/08/2026   | 12/08/2026       | Dự án cá nhân        |
 | 5   | **Hoàn thiện tài liệu:**<br>- Gom lại toàn bộ worklog 8 tuần thành một bản báo cáo thực tập mạch lạc.<br>- Cập nhật lại runbook kiến trúc và README theo những thay đổi phát sinh trong quá trình rà soát.<br>- Viết phần "bài học rút ra", bao gồm cả kiến thức AWS nền tảng lẫn kiến trúc Serverless/GenAI.                    | 13/08/2026   | 13/08/2026       | Dự án cá nhân        |
 | 6   | **Tổng kết & khép lại tuần:**<br>- Trình bày phần rà soát tổng thể trước nhóm/mentor: đã học được gì, project đi từ đề xuất đến trạng thái sẵn sàng vận hành như thế nào, và nếu làm lại thì sẽ thay đổi điều gì.<br>- Ghi nhận góp ý cuối cùng và phác thảo các hướng phát triển tiếp theo sau kỳ thực tập.                    | 14/08/2026   | 14/08/2026       | Dự án cá nhân        |
 
@@ -27,10 +27,20 @@ pre: " <b> 1.8. </b> "
 
 - **Xác nhận vẫn nhớ vững kiến thức AWS nền tảng:** Rà lại nội dung Tuần 1-2 mà không cần mở note ra xem, tôi nhận thấy mình vẫn nắm chắc các nhóm dịch vụ cốt lõi (Compute, Storage, Networking, Database) — và quan trọng hơn là hiểu được cách chúng kết hợp với nhau thành một kiến trúc hoàn chỉnh. Chính khả năng "ghép nối" này là nền tảng giúp tôi triển khai được project ở Tuần 3-7.
 
-- **Xác nhận project vẫn chạy ổn định từ đầu đến cuối:** Chạy lại toàn bộ luồng (upload tài liệu → OCR → hỏi đáp → cache → giám sát → đánh giá RAGAS) cho thấy hệ thống ổn định lâu dài chứ không chỉ chạy đúng một lần cho buổi demo.
+- **Xác nhận Luồng 1–3 vẫn chạy ổn định:** Chạy lại upload → OCR → hỏi đáp → cache → giám sát cho thấy hệ thống ổn định lâu dài chứ không chỉ demo một lần. Luồng 4 cố ý giữ **Partial**.
 
-- **Đối chiếu thẳng thắn với đề xuất ban đầu:** So với proposal ở Tuần 3, cả 4 luồng chính đều đã hoàn thành đầy đủ. Các hạng mục phụ (rate-limiting cho API, mở rộng bộ dữ liệu đánh giá, khả năng scale ngang vượt giới hạn concurrency hiện tại của Lambda) được ghi nhận rõ ràng như những bước tiếp theo, chứ không bị "lặng lẽ" bỏ qua.
+- **Đối chiếu thẳng thắn với đề xuất ban đầu:** So với proposal Tuần 3, Luồng 1–3 là **Done**; Luồng 4 (RAGAS) là **Partial**; rate-limiting API và bộ dữ liệu đánh giá lớn hơn là **Deferred** — theo dõi ở Proposal §9 thay vì bỏ lặng.
 
-- **Tài liệu dự án đã được tổng hợp đầy đủ:** Runbook kiến trúc, README triển khai và worklog 8 tuần giờ đã thống nhất và cập nhật, đủ để người khác có thể tiếp nhận lại project mà không cần phụ thuộc vào việc hỏi lại tôi.
+| Hạng mục | Trạng thái |
+|---|---|
+| Luồng 1 Ingestion | Done |
+| Luồng 2 Realtime Q&A | Done |
+| Luồng 3 Monitoring | Done |
+| Luồng 4 RAGAS | Partial |
+| Frontend / Backend / CI/CD | Done |
+| API rate-limiting | Deferred |
+| Điểm RAGAS production-hardened + dataset lớn hơn | Deferred |
 
-- **Nhìn lại toàn bộ hành trình:** Từ việc tạo tài khoản AWS ở Tuần 1 cho đến một hệ thống GenAI tự động, tự giám sát và tự đánh giá chất lượng ở Tuần 7, bài học lớn nhất không nằm ở một dịch vụ AWS cụ thể nào, mà ở sự chuyển dịch tư duy từ "làm cho chạy được" sang "làm cho vận hành được": thiết kế theo hướng sự kiện (event-driven), phân quyền tối thiểu (least-privilege IAM), khả năng quan sát hệ thống (observability), và cải tiến dựa trên số liệu (RAGAS) — tất cả đều hướng về cùng một triết lý đó.
+- **Tài liệu dự án đã được tổng hợp đầy đủ:** Runbook, README và worklog 8 tuần đã thống nhất, kèm khai báo Partial cho Luồng 4.
+
+- **Nhìn lại toàn bộ hành trình:** Từ tạo tài khoản AWS ở Tuần 1 đến một stack GenAI có giám sát vận hành — bài học lớn nhất là chuyển tư duy từ "làm cho chạy được" sang "làm cho vận hành được", kể cả kỷ luật đánh dấu vòng đánh giá chưa đóng là Partial thay vì overclaim.

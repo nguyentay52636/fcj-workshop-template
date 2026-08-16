@@ -184,7 +184,7 @@ Bất kỳ dự án kỹ thuật nào cũng có rủi ro. Điều quan trọng l
 
 - Tự động hóa việc tiếp nhận tài liệu và OCR, thay thế hoàn toàn xử lý thủ công.
 - Câu trả lời được cache trả về trong dưới một giây với câu hỏi lặp lại, so với vài giây cho một lượt gọi Bedrock mới.
-- Đánh giá RAGAS tự động hàng ngày thay thế việc kiểm tra chất lượng bằng cảm tính — có số liệu cụ thể để theo dõi và cải thiện.
+- Đường đánh giá RAGAS hàng ngày (**EventBridge → Lambda → S3 / CloudWatch**) được thiết kế để thay kiểm tra cảm tính bằng số liệu — **bàn giao vòng này ở mức Partial** cho tới khi gate container và scorer chạy live (xem §9).
 - Cảnh báo vận hành thời gian thực, phân loại theo mức nghiêm trọng, giúp rút ngắn thời gian phát hiện sự cố.
 
 #### Giá trị dài hạn
@@ -194,3 +194,23 @@ Dự án này không chỉ là một bài tập kỹ thuật. Kết thúc dự �
 - Một **kiến trúc tham chiếu** hoàn chỉnh, có tài liệu, có thể tái sử dụng cho các hệ thống GenAI Serverless trên AWS.
 - Kinh nghiệm thực tế với **Infrastructure as Code (Terraform)** và thiết kế theo hướng sự kiện (event-driven).
 - Một nền tảng có thể mở rộng cho các bài toán quản lý tri thức doanh nghiệp rộng hơn trong tương lai.
+
+---
+
+### 9. Trạng thái bàn giao so với Proposal _(đối chiếu trung thực)_
+
+Cuối kỳ thực tập, phạm vi được theo dõi theo **Done / Partial / Deferred** để mentor thấy rõ phần đã chứng minh trên hệ thống thật và phần mới ở mức thiết kế.
+
+| Hạng mục | Trạng thái | Ghi chú / bằng chứng trong báo cáo |
+|---|---|---|
+| Luồng 1 — Data Ingestion (S3 → SQS → OCR → embedding) | **Done** | [5.3](../5-Workshop/5.3-Data-Ingestion/), E2E [5.3.6](../5-Workshop/5.3-Data-Ingestion/5.3.6-End-To-End-Testing/) |
+| Luồng 2 — Realtime Q&A (Cognito, cache, Guardrails, hybrid search) | **Done** | [5.4](../5-Workshop/5.4-Realtime-QA/), E2E [5.4.8](../5-Workshop/5.4-Realtime-QA/5.4.8-End-To-End-Testing/) |
+| Luồng 3 — Monitoring & Alerting (SNS, alarm, Slack) | **Done** | [5.5](../5-Workshop/5.5-Monitorning/), E2E [5.5.4](../5-Workshop/5.5-Monitorning/5.5.4-End-to-End-Testing/) |
+| Luồng 4 — Đánh giá RAGAS hàng ngày | **Partial** | Terraform + runner skeleton ([5.6](../5-Workshop/5.6-RAGAS/)); gate image / điểm live chưa đóng |
+| Frontend console (`ui/index.html`) | **Done** | [5.7](../5-Workshop/5.7-Frontend/) |
+| Backend deep-dive & unit test | **Done** | [5.8](../5-Workshop/5.8-Backend/) |
+| CI/CD (plan trên PR, deploy thủ công) | **Done** | [5.9](../5-Workshop/5.9-CICD/) |
+| API rate-limiting | **Deferred** | Góp ý mentor Tuần 7 |
+| Bộ dữ liệu đánh giá RAGAS lớn hơn / scorer production-hardened | **Deferred** | Phụ thuộc hoàn tất push image Flow 4 + kiểm chứng điểm thật |
+
+**Cách đọc Partial ở Luồng 4:** kiến trúc, hình dạng IAM, thiết kế EventBridge và alarm đã được tài liệu hóa; đường chấm điểm vẫn là skeleton — **không** trình bày như vòng chất lượng hàng ngày đã chạy ổn định cho tới khi có bằng chứng (ECR image, invoke, kết quả S3).

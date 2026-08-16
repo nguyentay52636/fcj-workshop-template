@@ -11,7 +11,7 @@ pre: " <b> 5.6. </b> "
 Luồng 4 tự động đo lường và đánh giá chất lượng câu trả lời của chatbot theo chu kỳ hàng ngày, dùng framework **RAGAS**. Hạ tầng được khai báo tại `modules/evaluation/main.tf`.
 
 {{% notice warning %}}
-📌 **Đây là bản skeleton/placeholder** — khác với 3 luồng trước đã chạy thật và được test end-to-end.
+📌 **Trạng thái: Partial** — Thiết kế Terraform cho Luồng 4 đã có, nhưng `evaluation_runner.py` vẫn là **skeleton/placeholder**, và với `evaluation_image_pushed = false` thì Lambda / lịch EventBridge / alarm RAGAS **chưa chạy đầy đủ trên hạ tầng** cho tới khi hoàn tất gate 2 pha (push image + apply). Khác Luồng 1–3, luồng này **chưa** được chứng minh end-to-end production.
 {{% /notice %}}
 
 Luồng gồm 3 phần chính:

@@ -184,7 +184,7 @@ Every technical project carries risk. What matters is identifying them early and
 
 - Automated document ingestion and OCR replace manual document handling entirely.
 - Cached responses return in under a second for repeated questions, versus several seconds for a fresh Bedrock call.
-- Automated daily RAGAS evaluation replaces subjective quality checks with quantitative, trackable scores.
+- A **designed** daily RAGAS evaluation path (EventBridge → Lambda → S3 / CloudWatch) aims to replace subjective quality checks with trackable scores — **delivery of this loop is Partial** until the container gate and scorer are fully live (see §9).
 - Real-time, severity-classified alerting shortens the time to detect and respond to operational issues.
 
 #### Long-term Value
@@ -194,3 +194,23 @@ This project is more than a technical exercise. By the end, I expect to have:
 - A **reusable, documented reference architecture** for Serverless GenAI systems on AWS.
 - Hands-on experience with **Infrastructure as Code (Terraform)** and event-driven design.
 - A foundation that can be extended toward broader enterprise knowledge management use cases in the future.
+
+---
+
+### 9. Delivery Status vs. This Proposal _(honest close-out)_
+
+At the end of the internship, delivery is tracked against the original scope — **Done / Partial / Deferred** — so mentors can see what is production-proven versus what remains designed but not fully live.
+
+| Item | Status | Notes / evidence in report |
+|---|---|---|
+| Flow 1 — Data Ingestion (S3 → SQS → OCR → embeddings) | **Done** | [5.3](../5-Workshop/5.3-Data-Ingestion/), E2E [5.3.6](../5-Workshop/5.3-Data-Ingestion/5.3.6-End-To-End-Testing/) |
+| Flow 2 — Realtime Q&A (Cognito, cache, Guardrails, hybrid search) | **Done** | [5.4](../5-Workshop/5.4-Realtime-QA/), E2E [5.4.8](../5-Workshop/5.4-Realtime-QA/5.4.8-End-To-End-Testing/) |
+| Flow 3 — Monitoring & Alerting (SNS, alarms, Slack) | **Done** | [5.5](../5-Workshop/5.5-Monitorning/), E2E [5.5.4](../5-Workshop/5.5-Monitorning/5.5.4-End-to-End-Testing/) |
+| Flow 4 — RAGAS daily evaluation | **Partial** | Terraform + skeleton runner designed ([5.6](../5-Workshop/5.6-RAGAS/)); image gate / live scores not fully closed |
+| Frontend console (`ui/index.html`) | **Done** | [5.7](../5-Workshop/5.7-Frontend/) |
+| Backend deep-dive & unit tests | **Done** | [5.8](../5-Workshop/5.8-Backend/) |
+| CI/CD (plan on PR, manual deploy gate) | **Done** | [5.9](../5-Workshop/5.9-CICD/) |
+| API rate-limiting | **Deferred** | Noted in Week 7 mentor feedback |
+| Larger RAGAS evaluation dataset / production-hardened scorer | **Deferred** | Depends on finishing Flow 4 image push + real score validation |
+
+**How to read Partial on Flow 4:** architecture, IAM shape, EventBridge design, and alarm wiring are documented; the scoring path is still a skeleton and must not be presented as a fully automated daily quality loop until evidence (ECR image, invoke, S3 results) is attached.

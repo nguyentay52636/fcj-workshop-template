@@ -11,7 +11,7 @@ pre: " <b> 5.6. </b> "
 Stream 4 automatically measures and evaluates chatbot response quality on a daily basis using the **RAGAS** framework. Infrastructure is declared in `modules/evaluation/main.tf`.
 
 {{% notice warning %}}
-📌 **This is a skeleton/placeholder implementation** — unlike the previous 3 streams which are fully operational and tested end-to-end.
+📌 **Status: Partial** — Terraform design for Flow 4 is in place, but `evaluation_runner.py` remains a **skeleton/placeholder**, and with `evaluation_image_pushed = false` the Lambda / EventBridge schedule / RAGAS alarm are **not fully live** until the 2-phase image push + apply completes. Unlike Flows 1–3, this stream is **not** end-to-end production-proven yet.
 {{% /notice %}}
 
 The stream consists of 3 main parts:

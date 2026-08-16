@@ -80,7 +80,7 @@ Tuy nhiên, mình cũng nghĩ người tham gia cần có tinh thần chủ đ�
 
 Nếu có cơ hội góp ý cho những chương trình sau, mình mong phần hướng dẫn về các yêu cầu đầu ra và báo cáo có thể được trình bày cụ thể hơn, đặc biệt đối với những nội dung mà thực tập sinh cần hoàn thành xuyên suốt chương trình.
 
-Ngoài ra, mình nghĩ việc có thêm một số ví dụ về một báo cáo hoàn chỉnh hoặc checklist theo từng giai đoạn sẽ giúp thực tập sinh dễ tự kiểm tra hơn.
+Ngoài ra, mình nghĩ việc có thêm một số ví dụ về một báo cáo hoàn chỉnh hoặc checklist theo từng giai đoạn sẽ giúp thực tập sinh dễ tự kiểm tra hơn — đặc biệt là bảng **Done / Partial / Deferred** để những phần chưa đóng (như job đánh giá còn skeleton) được khai báo trung thực thay vì nghe như đã xong.
 
 Về phía bản thân, sau chương trình mình nhận ra rằng kiến thức chuyên môn chỉ là một phần. Khả năng quản lý công việc, đọc kỹ yêu cầu, theo dõi tiến độ và kiểm tra lại kết quả trước khi hoàn thành cũng quan trọng không kém.
 

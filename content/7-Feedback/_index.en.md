@@ -80,7 +80,7 @@ However, I also think participants need a strong spirit of initiative and self-d
 
 If given the opportunity to provide feedback for future programs, I hope the guidance on output requirements and reports can be presented more specifically — especially for deliverables that interns need to complete throughout the entire program.
 
-Additionally, I think having a few examples of complete reports or a phase-by-phase checklist would help interns self-assess more easily.
+Additionally, I think having a few examples of complete reports or a phase-by-phase checklist would help interns self-assess more easily — especially a simple **Done / Partial / Deferred** tracker so incomplete loops (like a skeleton evaluation job) are declared honestly instead of sounding finished.
 
 On my part, after the program I realized that technical knowledge is only one piece. The ability to manage work, read requirements carefully, track progress, and verify results before completing a task is equally important.
 

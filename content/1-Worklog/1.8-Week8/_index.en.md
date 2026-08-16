@@ -18,8 +18,8 @@ pre: " <b> 1.8. </b> "
 | Day | Task                                                                                                                                                                                                                                                                        | Start Date | Completion Date | Reference Material |
 | --- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------- | ---------------- | ------------------- |
 | 2   | **Review AWS foundations (Weeks 1-2):**<br>- Self-check core services covered: IAM, VPC, EC2, S3, RDS, Lightsail, Auto Scaling, CloudWatch, Route 53, DynamoDB, ElastiCache, CloudFront.<br>- Redo a few quick hands-on recalls (e.g., re-explain the VPC/Multi-AZ architecture from memory) to confirm retention rather than surface familiarity.                    | 08/10/2026 | 08/10/2026       | Personal Notes       |
-| 3   | **End-to-end project review:**<br>- Walk through the RAG Knowledge Assistant architecture flow by flow (Ingestion, Realtime QA, Monitoring, Evaluation).<br>- Re-test the live system: upload a new document, ask questions, verify Semantic Cache hits, and confirm the RAGAS evaluation job still runs on schedule.                  | 08/11/2026 | 08/11/2026       | Personal Project    |
-| 4   | **Gap analysis vs. original proposal:**<br>- Compare what was actually delivered against the Week 3 proposal and architecture diagrams.<br>- List completed items, partially completed items, and open items (e.g., API rate-limiting, expanded evaluation dataset) noted as feedback in Week 7.                                       | 08/12/2026 | 08/12/2026       | Personal Project    |
+| 3   | **End-to-end project review:**<br>- Walk through the RAG Knowledge Assistant architecture flow by flow (Ingestion, Realtime QA, Monitoring, Evaluation).<br>- Re-test live Flows 1–3: upload a document, ask questions, verify Semantic Cache hits, and confirm monitoring still alerts.<br>- Reconfirm Flow 4 status as **Partial** (design + skeleton; see Proposal §9 / [5.6](../5-Workshop/5.6-RAGAS/)).                  | 08/11/2026 | 08/11/2026       | Personal Project    |
+| 4   | **Gap analysis vs. original proposal:**<br>- Compare what was actually delivered against the Week 3 proposal and architecture diagrams.<br>- Publish an explicit **Done / Partial / Deferred** table (Flows 1–3 Done; Flow 4 Partial; rate-limiting & larger eval dataset Deferred).                                       | 08/12/2026 | 08/12/2026       | Personal Project    |
 | 5   | **Finalize documentation:**<br>- Consolidate the 8-week worklog into a coherent internship report.<br>- Update the architecture runbook and README with any changes made during the review.<br>- Draft a "lessons learned" section covering both AWS fundamentals and Serverless/GenAI architecture.                                    | 08/13/2026 | 08/13/2026       | Personal Project    |
 | 6   | **Retrospective & wrap-up:**<br>- Present the overall review to the team/mentor: what was learned, how the project evolved from proposal to production-ready state, and what would be done differently.<br>- Collect final feedback and outline potential next steps beyond the internship.                                            | 08/14/2026 | 08/14/2026       | Personal Project    |
 
@@ -27,10 +27,20 @@ pre: " <b> 1.8. </b> "
 
 - **Confirmed retention of AWS fundamentals:** Reviewing Weeks 1-2 material without referring back to notes confirmed solid understanding of core service groups (Compute, Storage, Networking, Database) and, more importantly, how they compose into a working architecture — this composability is exactly what made the Week 3-7 project possible.
 
-- **Verified the project still works end-to-end:** Re-running the full flow (document upload → OCR → Q&A → cache → monitoring → RAGAS evaluation) confirmed the system is stable beyond the original demo conditions, not just working once for presentation purposes.
+- **Verified Flows 1–3 still work end-to-end:** Re-running upload → OCR → Q&A → cache → monitoring confirmed operational stability beyond a one-time demo. Flow 4 remains intentionally **Partial**.
 
-- **Honest gap analysis completed:** Comparing the final state against the Week 3 proposal showed the four core flows were fully delivered, while secondary items (API rate-limiting, a larger evaluation dataset, horizontal scaling beyond current Lambda concurrency limits) remain as clearly documented next steps rather than silently dropped scope.
+- **Honest gap analysis completed:** Against the Week 3 proposal, Flows 1–3 are **Done**; Flow 4 (RAGAS) is **Partial**; API rate-limiting and a larger evaluation dataset are **Deferred** — tracked in Proposal §9 rather than silently dropped.
 
-- **Consolidated project documentation:** The architecture runbook, deployment README, and 8-week worklog are now aligned and up to date, making it possible for someone else to pick up the project without relying on tribal knowledge.
+| Item | Status |
+|---|---|
+| Flow 1 Ingestion | Done |
+| Flow 2 Realtime Q&A | Done |
+| Flow 3 Monitoring | Done |
+| Flow 4 RAGAS | Partial |
+| Frontend / Backend / CI/CD | Done |
+| API rate-limiting | Deferred |
+| Production-hardened RAGAS scores + larger dataset | Deferred |
 
-- **Overall reflection:** Looking back at the full internship — from AWS account setup in Week 1 to an automated, self-monitoring, quality-evaluated GenAI system in Week 7 — the biggest takeaway is not any single AWS service, but the shift from "making something work" to "making something operable": event-driven design, least-privilege IAM, observability, and metrics-driven iteration (RAGAS) all point in that same direction.
+- **Consolidated project documentation:** The architecture runbook, deployment README, and 8-week worklog are now aligned and up to date, including the Partial declaration for Flow 4.
+
+- **Overall reflection:** Looking back at the internship — from AWS account setup in Week 1 to an operable GenAI stack with monitoring — the biggest takeaway is the shift from "making something work" to "making something operable," including the discipline to mark incomplete evaluation loops as Partial instead of overclaiming.
