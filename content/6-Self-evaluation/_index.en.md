@@ -15,8 +15,8 @@ To objectively reflect on my internship process, I evaluate myself based on the 
 
 | No. | Criteria                                 | Description                                                                 | Good | Fair | Average |
 | --- | ---------------------------------------- | --------------------------------------------------------------------------- | ---- | ---- | ------- |
-| 1   | **Professional Knowledge & Skills**      | Domain understanding, practical application, tool proficiency, work quality | ✅   | ☐    | ☐       |
-| 2   | **Learning Ability**                     | Absorbing new knowledge, fast learning                                      | ✅   | ☐    | ☐       |
+| 1   | **Professional Knowledge & Skills**      | Domain understanding, practical application, tool proficiency, work quality | ☐    | ✅   | ☐       |
+| 2   | **Learning Ability**                     | Absorbing new knowledge, fast learning                                      | ☐    | ✅   | ☐       |
 | 3   | **Proactiveness**                        | Self-researching, taking initiative without waiting for instructions        | ✅   | ☐    | ☐       |
 | 4   | **Sense of Responsibility**              | Completing work on time, ensuring quality                                   | ✅   | ☐    | ☐       |
 | 5   | **Discipline**                           | Punctuality, compliance with rules, adherence to workflows                  | ✅   | ☐    | ☐       |
@@ -25,7 +25,7 @@ To objectively reflect on my internship process, I evaluate myself based on the 
 | 8   | **Teamwork & Collaboration**             | Working effectively with colleagues, team participation                     | ✅   | ☐    | ☐       |
 | 9   | **Professional Conduct**                 | Respecting colleagues, partners, and the work environment                   | ✅   | ☐    | ☐       |
 | 10  | **Problem-Solving Mindset**              | Identifying issues, proposing solutions, creativity                         | ☐    | ✅   | ☐       |
-| 11  | **Contribution to Project/Organization** | Work effectiveness, improvement initiatives, team recognition               | ✅   | ☐    | ☐       |
+| 11  | **Contribution to Project/Organization** | Work effectiveness, improvement initiatives, team recognition               | ☐    | ✅   | ☐       |
 | 12  | **Overall**                              | General assessment of the entire internship process                         | ✅   | ☐    | ☐       |
 
 ### Areas for Improvement
@@ -33,3 +33,4 @@ To objectively reflect on my internship process, I evaluate myself based on the 
 - Improve knowledge absorption and project implementation.
 - Deepen understanding and hands-on practice with AWS services and other platforms.
 - Enhance teamwork by establishing clearer communication regarding project tasks and collaborative execution.
+- Improve task management and requirement checking: I sometimes did not read or verify the full set of requirements carefully, which led to missing some report items. I need to build the habit of reading requirements thoroughly, listing tasks, and reviewing everything before marking work as complete.

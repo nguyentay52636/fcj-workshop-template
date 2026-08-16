@@ -34,7 +34,7 @@ This repository serves as a structured online report portfolio for the AWS Vietn
   2. **Proposal** — Project proposals and technical plans
   3. **Blogs Posted** — Technical articles and published content
   4. **Events Participated** — AWS community events and workshops attended
-  5. **Workshop** — Hands-on lab: secure hybrid access to S3 via VPC endpoints
+  5. **Workshop** — RAG Knowledge Assistant on AWS (ingestion, realtime Q&A, monitoring, RAGAS, frontend, backend, CI/CD)
   6. **Self-Evaluation** — Growth reflection and performance assessment
   7. **Sharing & Feedback** — Program feedback and mentorship notes
 - **CI/CD Ready** — GitHub Actions for GitHub Pages + Vercel config with Hugo `0.134.3`
@@ -58,14 +58,20 @@ This repository serves as a structured online report portfolio for the AWS Vietn
 │   │   └── 3.3-Blog3/
 │   ├── 4-EventParticipated/    # Events attended
 │   │   ├── 4.1-Event1/
-│   │   └── 4.2-Event2/
-│   ├── 5-Workshop/             # Workshop lab chapters
+│   │   ├── 4.2-Event2/
+│   │   └── 4.3-Event3/
+│   ├── 5-Workshop/             # RAG on AWS workshop chapters
 │   │   ├── 5.1-Workshop-overview/
 │   │   ├── 5.2-Prerequiste/
-│   │   ├── 5.3-S3-vpc/
-│   │   ├── 5.4-S3-onprem/
-│   │   ├── 5.5-Policy/
-│   │   └── 5.6-Cleanup/
+│   │   ├── 5.3-Data-Ingestion/
+│   │   ├── 5.4-Realtime-QA/
+│   │   ├── 5.5-Monitorning/
+│   │   ├── 5.6-RAGAS/
+│   │   ├── 5.7-Frontend/
+│   │   ├── 5.8-Backend/
+│   │   ├── 5.9-CICD/
+│   │   ├── 5.10-System-Testing/
+│   │   └── 5.11-Cleanup/
 │   ├── 6-Self-evaluation/
 │   ├── 7-Feedback/
 │   ├── _index.en.md            # Home page (English)
@@ -96,16 +102,21 @@ This repository serves as a structured online report portfolio for the AWS Vietn
 
 ### Workshop Chapters (`5-Workshop`)
 
-Hands-on lab: **Secure Hybrid Access to Amazon S3 using VPC Endpoints**.
+Hands-on project: **RAG Knowledge Assistant on AWS**.
 
 | Chapter | Topic |
 |---------|--------|
 | 5.1 | Workshop overview |
 | 5.2 | Prerequisites |
-| 5.3 | Access S3 from VPC (Gateway Endpoint) |
-| 5.4 | Access S3 from on-premises (Interface Endpoint + DNS) |
-| 5.5 | VPC Endpoint Policies (optional) |
-| 5.6 | Cleanup |
+| 5.3 | Data ingestion (S3, SQS, OCR, chunking, embedding) |
+| 5.4 | Realtime Q&A (API Gateway, Cognito, cache, retrieval) |
+| 5.5 | Monitoring and alerting |
+| 5.6 | RAGAS evaluation pipeline |
+| 5.7 | Frontend console |
+| 5.8 | Backend deep-dive |
+| 5.9 | CI/CD |
+| 5.10 | System testing |
+| 5.11 | Cleanup |
 
 ---
 

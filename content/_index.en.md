@@ -15,7 +15,7 @@ chapter: false
 |---|---|
 | **Full Name** | Nguyen Ho Phuong Tay |
 | **Phone Number** | +84 846 777 901 |
-| **Email** | phuongtay52663@gmail.com |
+| **Email** | phuongtay52636@gmail.com |
 | **University** | Sai Gon University |
 | **Major** | Information Technology |
 | **Class** | DCT1221 |

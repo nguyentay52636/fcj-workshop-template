@@ -1,6 +1,6 @@
 ---
 title: "Event 3"
-date: 2026-08-08
+date: 2026-08-15
 weight: 3
 chapter: false
 pre: " <b> 4.3. </b> "
@@ -8,64 +8,39 @@ pre: " <b> 4.3. </b> "
 
 # Báo cáo tóm tắt: “Agent Forge - Deepdive Day 3”
 
-### 1. Thông tin sự kiện
+### 1. Tổng quan về sự kiện
 - **Thời gian**: 9:00 – 12:00, Thứ Bảy, 15/08/2026
 - **Địa điểm**: Tầng 26, Bitexco Financial Tower, 2 Hải Triều, TP. Hồ Chí Minh
+- **Chuỗi workshop**: 3-Day AgentForge Workshop — Day 3 / 3
+- **Chủ đề**: Production Readiness & Governance
+- **Topic**: AgentCore DevOps & Best Practices
 - **Vai trò**: Người tham dự
 
-### 2. Diễn giả
-- **Nghia Tran** — Agentic SA
-- **Anh Pham** — Cloud Consultant, G-AsiaPacific Vietnam
+### 2. Danh sách diễn giả
+- **Nghia Tran** - Agentic SA
+- **Anh Pham** - Cloud Consultant G-AsiaPacific Vietnam
 
 ---
 
 ### 3. Nội dung chính
+Đây là ngày cuối của chuỗi **3-Day AgentForge Workshop** (sau Day 1 — Foundations & Agent Setup ngày 01/08, và Day 2 — Personalization, Evaluation & Optimization ngày 08/08). Day 3 tập trung vào sẵn sàng production, governance và vận hành hệ thống Agentic một cách an toàn.
 
-#### Phần lý thuyết
+#### Phần lý thuyết (09:00 – 10:00)
+**Topic: AgentCore DevOps & Best Practices**
 
-##### Memory
-Nếu không có memory, agent dễ “quên” hội thoại khi context window đầy. Buổi học đi vào cách giữ ngữ cảnh hữu ích giữa các lượt chat:
+Phần lý thuyết gồm:
 
-- **Short-term memory**: lịch sử hội thoại gần, lấy lại nhanh khi cần
-- **Long-term memory**: rút insight từ chat cũ, lưu dạng vector
-- **Chiến lược**: Summary, User Preference, Semantic, Episodic
-- **Namespace**: cấu trúc kiểu `/Strategy/Actor/Session` để thu hẹp phạm vi tìm kiếm, giảm token và tăng tốc retrieval
+- **Amazon Bedrock AgentCore DevOps use cases**: Cách AgentCore được dùng trong quy trình giao hàng thực tế — phát triển, triển khai và vận hành agent như workload production, không chỉ dừng ở demo một lần.
+- **Best practices for building Agentic Systems**: Hướng dẫn thực tế khi thiết kế agent có thể vận hành, kiểm soát được và an toàn hơn trên production (ranh giới thành phần rõ, kiểm soát tool, kỷ luật vận hành).
 
-##### Evaluations
-Trước khi đưa agent lên production cần cách kiểm tra câu trả lời có đúng, hữu ích, an toàn — và bắt được hallucination hay tool call sai.
+#### Phần thực hành (10:00 – 11:00)
+**Hands-on Lab** gồm các hoạt động:
 
-- **On-demand**: đánh giá trong lúc đang build
-- **Online**: theo dõi liên tục trên production qua telemetry
-
-Có thể chấm ở 3 mức:
-- **Session** — cả phiên hội thoại
-- **Trace** — một câu trả lời
-- **Span** — một lần gọi tool và tham số
-
-Hệ thống dùng **Judge** để phân tích hoạt động của agent; kết quả đẩy sang Observability để team theo dõi và can thiệp khi cần.
-
-##### Observability
-Nói ngắn gọn: biết agent đã làm gì, làm thế nào, và tốn bao nhiêu.
-
-- **Logs** — chuyện gì xảy ra
-- **Traces** — đường đi của request
-- **Metrics** — latency, chi phí token, tỷ lệ lỗi
-
-Ngoài ra còn OpenTelemetry, cảnh báo, và cấu trúc `Session → Trace → Span`.
-
-##### Các thành phần AgentCore
-- **Registry** — nơi tái sử dụng skill, tool, API (Admin / Publisher / Consumer)
-- **Harness** — khung tối giản để tạo agent từ Model + System Prompt + Tools
-- **Tools** — để agent gọi hệ thống ngoài và API realtime
-- **Payments** — agent thực hiện thanh toán (Stripe, Coinbase)
-- **Optimization** — dùng dữ liệu eval/observability cho A/B test, red teaming, vòng cải tiến
-- **Policy** — lớp kiểm soát: human-in-the-loop, Cedar, chế độ strict/permissive, least privilege
-
-#### Phần thực hành
-Hướng dẫn dùng Agent SDK, cấu hình AWS Bedrock và CLI: tạo project, deploy, rồi test agent trên AWS.
+- Secure tool calls using **AgentCore Policy**
+- Open-ended enhancements and customizations
+- Final improvements and experimentation
 
 ---
 
-### 4. Những gì em rút ra được
-
-Day 2 giúp em hình dung rõ hơn Memory, Evaluations và Observability gắn với nhau thế nào khi vận hành agent thật, không chỉ demo. Các khối AgentCore (Registry, Harness, Tools, Policy, Optimization) cũng dễ hiểu hơn khi thấy chúng kết nối để tái sử dụng, kiểm soát và cải tiến. Least privilege và human-in-the-loop là điểm em nhớ nhất vì mang tính an toàn thực tế. Buổi lab giúp em quen hơn với Agent SDK + Bedrock + CLI theo flow tạo → deploy → test.
+### 4. Bài học rút ra
+Qua **Agent Forge - Deepdive Day 3**, em hiểu rõ hơn việc đưa agent từ demo chạy được sang gần mức sẵn sàng production. Các use case DevOps cho thấy agent cần tư duy vận hành giống workload cloud khác — deploy, observe, improve — chứ không chỉ chạy thành công lần đầu. Best practices cho Agentic systems nhấn mạnh governance và thiết kế có kiểm soát. Lab khóa tool call bằng **AgentCore Policy** đặc biệt hữu ích: thiếu policy thì quyền gọi tool trở thành bề mặt rủi ro. Phần tùy biến và cải tiến cuối buổi cũng cho thấy production readiness là vòng harden liên tục, không phải một vạch đích làm một lần là xong.

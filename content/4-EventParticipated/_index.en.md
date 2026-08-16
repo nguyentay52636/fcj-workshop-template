@@ -23,7 +23,7 @@ During my internship, I participated in three events. Each one was a memorable e
 ---
 
 ### [Event 2](4.2-Event2/)  
-&emsp;**Event Name:** Agent Forge - Deepdive Day 1  
+&emsp;**Event Name:** Agent Forge - Deepdive Day 1 (Foundations & Agent Setup)  
 
 &emsp;**Date & Time:** 09:00 AM – 12:00 PM, August 1, 2026  
 
@@ -34,10 +34,12 @@ During my internship, I participated in three events. Each one was a memorable e
 ---
 
 ### [Event 3](4.3-Event3/)  
-&emsp;**Event Name:** Agent Forge - Deepdive Day 2  
+&emsp;**Event Name:** Agent Forge - Deepdive Day 3 (Production Readiness & Governance)  
 
-&emsp;**Date & Time:** 09:00 AM – 12:00 PM, August 8, 2026  
+&emsp;**Date & Time:** 09:00 AM – 12:00 PM, August 15, 2026  
 
 &emsp;**Location:** 26th Floor, Bitexco Financial Tower, 02 Hai Trieu Street, Ho Chi Minh City  
+
+&emsp;**Topic:** AgentCore DevOps & Best Practices  
 
 &emsp;**Role:** Attendee  

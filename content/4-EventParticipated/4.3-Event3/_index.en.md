@@ -1,6 +1,6 @@
 ---
 title: "Event 3"
-date: 2026-08-08
+date: 2026-08-15
 weight: 3
 chapter: false
 pre: " <b> 4.3. </b> "
@@ -11,61 +11,36 @@ pre: " <b> 4.3. </b> "
 ### 1. Event Overview
 - **Date & Time**: 9:00 AM – 12:00 PM, Saturday, August 15, 2026
 - **Location**: 26th Floor, Bitexco Financial Tower, 2 Hai Trieu St., Ho Chi Minh City
+- **Workshop series**: 3-Day AgentForge Workshop — Day 3 of 3
+- **Theme**: Production Readiness & Governance
+- **Topic**: AgentCore DevOps & Best Practices
 - **Role**: Attendee
 
-### 2. Speakers
-- **Nghia Tran** — Agentic SA
-- **Anh Pham** — Cloud Consultant, G-AsiaPacific Vietnam
+### 2. Speaker List
+- **Nghia Tran** - Agentic SA
+- **Anh Pham** - Cloud Consultant G-AsiaPacific Vietnam
 
 ---
 
-### 3. What Was Covered
+### 3. Key Content
+This was the final day of the **3-Day AgentForge Workshop** (after Day 1 — Foundations & Agent Setup on 01/08, and Day 2 — Personalization, Evaluation & Optimization on 08/08). Day 3 focused on production readiness, governance, and operating Agentic systems safely.
 
-#### Theory
+#### Theoretical Part (09:00 – 10:00)
+**Topic: AgentCore DevOps & Best Practices**
 
-##### Memory
-Without memory, an agent forgets previous turns once the context window fills up. The session covered how to keep useful context across a conversation:
+The theoretical session covered:
 
-- **Short-term memory**: recent chat history, easy to pull back when needed
-- **Long-term memory**: insights extracted from past chats, stored as vectors
-- **Strategies**: Summary, User Preference, Semantic, Episodic
-- **Namespace**: paths like `/Strategy/Actor/Session` to scope search, cut token use, and speed up retrieval
+- **Amazon Bedrock AgentCore DevOps use cases**: How AgentCore is used in real delivery workflows — developing, deploying, and operating agents as production workloads rather than one-off demos.
+- **Best practices for building Agentic Systems**: Practical guidance on designing agents that are operable, governable, and safer to run in production (clear component boundaries, controlled tool access, and operational discipline).
 
-##### Evaluations
-Before shipping an agent, you need a way to check if answers are correct, useful, and safe — and catch hallucinations or bad tool calls.
+#### Practical Hands-on Part (10:00 – 11:00)
+**Hands-on Lab** activities:
 
-- **On-demand**: run checks while building
-- **Online**: keep monitoring in production with telemetry
-
-Checks can run at three levels:
-- **Session** — whole conversation
-- **Trace** — a single reply
-- **Span** — a tool call and its parameters
-
-A **Judge** reviews agent activity; results go into Observability so the team can step in when something looks off.
-
-##### Observability
-Basically: know what the agent did, how it did it, and what it cost.
-
-- **Logs** — what happened
-- **Traces** — the full path of a request
-- **Metrics** — latency, token cost, error rate
-
-Also covered OpenTelemetry, alerts, and the hierarchy `Session → Trace → Span`.
-
-##### AgentCore building blocks
-- **Registry** — share and reuse skills, tools, APIs (Admin / Publisher / Consumer)
-- **Harness** — thin wrapper to spin up an agent from Model + System Prompt + Tools
-- **Tools** — let the agent call external systems and live APIs
-- **Payments** — agent-triggered payments (Stripe, Coinbase)
-- **Optimization** — use eval/observability data for A/B tests, red teaming, and improvement loops
-- **Policy** — guardrails: human-in-the-loop, Cedar, strict/permissive modes, least privilege
-
-#### Hands-on
-Walkthrough with Agent SDK, AWS Bedrock setup, and CLI: create a project, deploy, and test an agent on AWS.
+- Secure tool calls using **AgentCore Policy**
+- Open-ended enhancements and customizations
+- Final improvements and experimentation
 
 ---
 
-### 4. Takeaways
-
-Day 2 made it clearer how Memory, Evaluations, and Observability fit together when you actually run agents in production — not just demo them. AgentCore pieces (Registry, Harness, Tools, Policy, Optimization) are less abstract once you see how they connect for reuse, control, and iteration. Least privilege and human-in-the-loop stood out as practical safety defaults, not theory. The lab also helped me get comfortable with Agent SDK + Bedrock + CLI for the basic create → deploy → test flow.
+### 4. Key Takeaways
+Through **Agent Forge - Deepdive Day 3**, I understood more clearly what it means to move an agent from a working demo to something closer to production readiness. The DevOps use cases showed that agents need the same operational mindset as other cloud workloads — deploy, observe, and improve — not only a successful first run. Best practices for Agentic systems reinforced the need for governance and controlled design. The lab on securing tool calls with **AgentCore Policy** was especially useful: without policy, tool access becomes a risk surface. The open-ended customization and final improvement exercises also showed that production readiness is an ongoing hardening loop, not a single finish line.

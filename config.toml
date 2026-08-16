@@ -1,4 +1,4 @@
-baseURL = "https://workshop-sample.awsfcaj.com/"
+baseURL = "/"
 relativeURLs = false
 canonifyURLs = false
 # Vietnamese is default → no URL prefix (/7-feedback/)
@@ -16,10 +16,9 @@ home = [ "HTML", "RSS", "JSON"]
 [params]
   # Change default color scheme with a variant one. Can be "red", "blue", "green".
   themeVariant = "workshop"
-  # Git hub repo link
-  editURL = ""
-  description = ""
-  author = "thienlh@thienlu.com"
+  editURL = "https://github.com/nguyentay52636/fcj-workshop-template/edit/main/content/"
+  description = "Internship report — Nguyen Ho Phuong Tay | First Cloud AI Journey (AWS Vietnam)"
+  author = "phuongtay52636@gmail.com"
   showVisitedLinks = true
   disableBreadcrumb = false
   disableNextPrev = false
