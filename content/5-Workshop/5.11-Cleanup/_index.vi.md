@@ -106,6 +106,11 @@ Tại thời điểm phát hiện, `evaluation_image_pushed` vẫn đang là `fa
 
 #### Xác minh đã dọn sạch
 
+Trước khi chạy `scripts/down.sh`, kiểm tra Terraform còn quản lý những resource nào:
+
+![Kiểm tra trước destroy — terraform state list](/images/5-Workshop/5.11-Cleanup/image.png)
+_Ví dụ output `terraform state list` khi stack vẫn còn (ở đây: module ingestion + bucket `raw_documents`). Sau `down.sh` thành công, danh sách này phải rỗng / báo no state, và các lệnh AWS CLI bên dưới không còn bucket `rag-app-dev-*` hay repo ECR evaluation._
+
 ```bash
 terraform state list          # rỗng hoặc lỗi "no state" nghĩa là đã destroy xong
 aws s3 ls                     # không còn bucket rag-app-dev-* nào

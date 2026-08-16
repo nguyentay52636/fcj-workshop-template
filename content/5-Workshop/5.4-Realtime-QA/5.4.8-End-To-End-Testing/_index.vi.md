@@ -40,6 +40,11 @@ Sau khi hoàn tất hạ tầng ([5.4.1](../5.4.1-API-Gateway-Cognito),[5.4.2](.
 
 ![Kết quả test 4](/images/5-Workshop/5.4-Realtime-QA/image5.4.8-4.png)
 
+##### Hình 5: Kết quả test 5 (câu hỏi ngoài phạm vi tài liệu)
+
+![Test 5 — câu hỏi ngoài corpus vẫn grounded](/images/5-Workshop/5.4-Realtime-QA/image5.4.8-5.png)
+_Hỏi chủ đề không có trong tài liệu đã ingest (công thức phở). Assistant từ chối bịa câu trả lời và bám ngữ cảnh tài liệu hiện có thay vì hallucination._
+
 #### Kết quả đạt được
 
 - API bảo mật bằng Cognito, phục vụ đủ 4 route qua 1 Lambda duy nhất, giảm số lượng function cần quản lý.

@@ -44,3 +44,11 @@ Phần lý thuyết gồm:
 
 ### 4. Bài học rút ra
 Qua **Agent Forge - Deepdive Day 3**, em hiểu rõ hơn việc đưa agent từ demo chạy được sang gần mức sẵn sàng production. Các use case DevOps cho thấy agent cần tư duy vận hành giống workload cloud khác — deploy, observe, improve — chứ không chỉ chạy thành công lần đầu. Best practices cho Agentic systems nhấn mạnh governance và thiết kế có kiểm soát. Lab khóa tool call bằng **AgentCore Policy** đặc biệt hữu ích: thiếu policy thì quyền gọi tool trở thành bề mặt rủi ro. Phần tùy biến và cải tiến cuối buổi cũng cho thấy production readiness là vòng harden liên tục, không phải một vạch đích làm một lần là xong.
+
+### Hình ảnh sự kiện
+
+Một số hình ảnh trong buổi sự kiện:
+
+![Agent Forge - Deepdive Day 3](/images/4-EventParticipated/event3_01.jpg)
+
+![Agent Forge - Deepdive Day 3](/images/4-EventParticipated/event3_02.jpg)

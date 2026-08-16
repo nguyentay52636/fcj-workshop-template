@@ -106,6 +106,11 @@ At the time of discovery, `evaluation_image_pushed` was still set to `false` (St
 
 #### Verification of Clean Destroy
 
+Before running `scripts/down.sh`, confirm what Terraform still manages:
+
+![Pre-destroy check — terraform state list](/images/5-Workshop/5.11-Cleanup/image.png)
+_Example `terraform state list` output while the stack is still up (here: ingestion module + `raw_documents` bucket). After a successful `down.sh`, this list should be empty / report no state, and the follow-up AWS CLI checks below should find no leftover `rag-app-dev-*` buckets or evaluation ECR repo._
+
 ```bash
 terraform state list          # Empty or "no state" error indicates successful destroy
 aws s3 ls                     # No remaining rag-app-dev-* buckets

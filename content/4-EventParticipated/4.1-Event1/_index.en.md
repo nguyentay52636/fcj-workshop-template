@@ -136,8 +136,6 @@ Through the event, I realized that success comes not only from mastering technol
 
 Here are some photos from the event:
 
-![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/event1_01.jpg)
+![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/skien1.jpg)
 
-![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/event1_02.jpg)
-
-![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/event1_03.jpg)
+![FCAJ x Agentic AI Build Week](/images/4-EventParticipated/sukien1.jpg)

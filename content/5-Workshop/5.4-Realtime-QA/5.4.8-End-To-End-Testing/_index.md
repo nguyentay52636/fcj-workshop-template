@@ -40,6 +40,11 @@ After completing the infrastructure ([5.4.1](../5.4.1-API-Gateway-Cognito),[5.4.
 
 ![Test 4 result](/images/5-Workshop/5.4-Realtime-QA/image5.4.8-4.png)
 
+##### Figure 5: Test 5 result (out-of-scope question)
+
+![Test 5 — out-of-scope query stays grounded](/images/5-Workshop/5.4-Realtime-QA/image5.4.8-5.png)
+_Ask about a topic not in the ingested corpus (pho recipe). The assistant refuses to invent an answer and stays grounded in the available documents instead of hallucinating._
+
 #### Outcomes
 
 - API secured with Cognito, serving all 4 routes via a single Lambda, reducing the number of functions to manage.

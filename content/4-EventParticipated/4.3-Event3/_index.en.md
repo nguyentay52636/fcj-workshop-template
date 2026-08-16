@@ -44,3 +44,11 @@ The theoretical session covered:
 
 ### 4. Key Takeaways
 Through **Agent Forge - Deepdive Day 3**, I understood more clearly what it means to move an agent from a working demo to something closer to production readiness. The DevOps use cases showed that agents need the same operational mindset as other cloud workloads — deploy, observe, and improve — not only a successful first run. Best practices for Agentic systems reinforced the need for governance and controlled design. The lab on securing tool calls with **AgentCore Policy** was especially useful: without policy, tool access becomes a risk surface. The open-ended customization and final improvement exercises also showed that production readiness is an ongoing hardening loop, not a single finish line.
+
+### Event Photos
+
+Here are some photos from the event:
+
+![Agent Forge - Deepdive Day 3](/images/4-EventParticipated/event3_01.jpg)
+
+![Agent Forge - Deepdive Day 3](/images/4-EventParticipated/event3_02.jpg)
