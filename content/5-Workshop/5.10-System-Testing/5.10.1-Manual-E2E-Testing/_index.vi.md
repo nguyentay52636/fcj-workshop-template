@@ -67,4 +67,8 @@ confirm → Textract OCR → chunk → embed → index → completed
 
 Đây chính là ví dụ rõ ràng nhất trong toàn dự án cho thấy **kiểm thử thủ công, dù không tự động, vẫn có giá trị phát hiện lỗi thật** — nếu không có bước test end-to-end trên hạ tầng thật này, bug thiếu VPC endpoint có thể đã không được phát hiện cho tới khi người dùng thật gặp phải.
 
+{{% notice note %}}
+📌 **Screenshot 504 / debug Console: N/A** — không còn giữ frame lỗi 504. Bằng chứng còn lại là mô tả truy vết + Terraform `aws_vpc_endpoint "lambda"` và lần test lại sau apply (luồng OCR chạy hết). Không gắn ảnh giả.
+{{% /notice %}}
+
 ---

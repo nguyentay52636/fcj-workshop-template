@@ -34,22 +34,22 @@ Dữ liệu văn bản phi cấu trúc (Unstructured Data) cần trải qua mộ
 
 Một bài toán cốt lõi của Data Engineering trong các ứng dụng Web/App là độ trễ (latency) và chi phí (cost):
 
-- **Semantic Caching:** Mình tích hợp Amazon ElastiCache Serverless làm lớp Caching thông minh cho câu hỏi. Nếu câu hỏi mới có ngữ nghĩa tương tự câu hỏi cũ, hệ thống sẽ trả về kết quả ngay trong Cache thay vì phải gọi lại mô hình LLM đắt đỏ. Kỹ thuật này giúp giảm tối đa độ trễ cho người dùng cuối (Real-time serving).
+- **Exact-match cache (không phải semantic cache thật):** Mình dùng Amazon ElastiCache Serverless làm lớp cache câu hỏi → câu trả lời, có TTL. Khóa cache là hash của câu hỏi **sau khi chuẩn hóa** (hạ chữ thường, bỏ dấu câu, gộp khoảng trắng). Hỏi **đúng y hệt** (sau normalize) thì trúng cache, khỏi gọi lại LLM. ElastiCache Serverless **không có** module RediSearch/vector nên **không** so khớp “câu gần nghĩa”. UI vẫn có thể ghi nhãn “Semantic cache”, nhưng implementation là exact-match — mình giữ đúng bản chất này thay vì nói quá.
 - **Quản lý trạng thái & Phản hồi (Transaction Store):** Toàn bộ lịch sử hội thoại (Chat History) và dữ liệu phản hồi (Feedback Store) được lưu trữ trên DynamoDB – dòng NoSQL Database đáp ứng tốc độ ghi siêu nhanh với độ trễ chỉ tính bằng milisecond.
 
-## 4. Automated Batch Processing & Continuous Evaluation (Pipeline đánh giá tự động)
+## 4. Automated Batch Processing & Continuous Evaluation (Pipeline đánh giá — Partial)
 
-Không dừng lại ở luồng dữ liệu thời gian thực, một hệ thống dữ liệu chuẩn mực luôn cần luồng xử lý định kỳ (Batch Pipeline) để đánh giá chất lượng:
+Không dừng lại ở luồng dữ liệu thời gian thực, một hệ thống dữ liệu chuẩn mực cần luồng batch để đánh giá chất lượng. **Phần này mình ghi rõ trạng thái Partial**, không nói như đã chạy production:
 
-- **Tự động hóa Batch Job:** Mình dùng Amazon EventBridge Scheduler kết hợp AWS Lambda để khởi chạy pipeline đánh giá chất lượng mô hình (theo bộ tiêu chí RAGAS) hoàn toàn tự động theo khung giờ cố định hàng ngày.
-- **Lưu trữ Data Lake định kỳ:** Kết quả đánh giá từng ngày được đẩy về lại Amazon S3 Evaluation Results đóng vai trò như một Data Lake lưu trữ log lịch sử. Điều này giúp team dễ dàng theo dõi, phân tích xu hướng biến động chất lượng của hệ thống theo thời gian.
+- **Thiết kế Terraform đã có:** EventBridge Scheduler gọi Lambda đánh giá (đóng gói **container image** trên ECR, khác 2 Lambda zip của ingestion/chat), kết quả dự kiến ghi S3 Evaluation Results và metric RAGAS (Faithfulness, Relevancy, Precision, Recall) lên CloudWatch. Có **gate 2 pha**: apply lần 1 chỉ tạo ECR rỗng + IAM; phải build/push image rồi bật cờ mới tạo Lambda/lịch/alarm.
+- **Chưa chạy đủ trên hạ tầng:** `evaluation_runner.py` vẫn là **skeleton**; cờ `evaluation_image_pushed = false` nên Lambda / lịch EventBridge / alarm `ragas-faithfulness-low` **chưa live**. Widget RAGAS trên dashboard Luồng 3 cố ý trống cho đến khi job chạy ít nhất một lần. Đây là phần mình chủ động để Partial, không gộp với Luồng 1–3 đã test E2E.
 
 ## 5. Data Observability & Monitoring (Giám sát dòng chảy dữ liệu)
 
 Cuối cùng, dữ liệu chạy trong hệ thống Cloud cần phải "nhìn thấy được" (observable) để kịp thời phát hiện sự cố:
 
-- **Tập trung hóa Log & Metric:** Dùng Amazon CloudWatch để thu thập log, theo dõi các chỉ số quan trọng của pipeline như: độ sâu hàng đợi DLQ (DLQ Depth), tỉ lệ lỗi 5xx của API Gateway, cho đến các Custom Metrics về AI như Faithfulness, Relevancy, Precision.
-- **Cảnh báo thông minh (Alert Routing):** Phân loại sự cố theo cấp độ (Warning vs Critical). Khi xảy ra lỗi nghiêm trọng (Critical), Amazon SNS sẽ phối hợp cùng AWS Chatbot để đẩy ngay thông báo cảnh báo về Slack hoặc PagerDuty cho đội ngũ kỹ thuật xử lý.
+- **Tập trung hóa Log & Metric:** Amazon CloudWatch thu thập log và metric pipeline đang chạy thật: độ sâu DLQ, tỉ lệ 5xx API Gateway, cache hit/miss (EMF từ chat-engine). Các custom metric RAGAS (Faithfulness, Relevancy, Precision) **đã khai báo trên dashboard** nhưng **chưa có số** cho tới khi luồng đánh giá (mục 4) chạy — khớp trạng thái Partial.
+- **Cảnh báo theo severity:** Warning (email qua SNS `alerts-info`) và Critical (SNS `alerts-critical`, Slack qua AWS Chatbot khi đã cấu hình). PagerDuty để sẵn dạng tùy chọn, **chưa bật mặc định**.
 
 ## Ba "điểm sáng" Data Engineering mình rút ra từ đồ án
 
@@ -57,7 +57,7 @@ Nếu bạn cũng đang chuẩn bị làm đồ án hoặc project cá nhân, đ
 
 - **Tính Decoupled (Tách biệt hệ thống):** Khâu nạp dữ liệu (Ingestion) và khâu truy vấn (Serving) hoạt động độc lập qua hàng đợi SQS và DynamoDB. Dù Admin có upload hàng ngàn file PDF cùng lúc thì trải nghiệm chat của người dùng cuối vẫn hoàn toàn mượt mà, không hề bị ảnh hưởng.
 - **Xử lý bất đồng bộ (Asynchronous Serverless):** Việc kết hợp S3 Event + SQS + Lambda giúp hệ thống hoạt động bất đồng bộ hoàn toàn. Tài nguyên máy tính chỉ bật lên khi có dữ liệu chạy qua, giúp tối ưu hóa 100% chi phí vận hành Cloud.
-- **Tối ưu hóa truy vấn dữ liệu (Query Optimization):** Thay vì truy vấn "ngây thơ" thẳng vào LLM, việc kết hợp Semantic Cache (ElastiCache) và Hybrid Search (BM25 + Vector Search) chính là minh chứng cho tư duy tối ưu hiệu năng dữ liệu của một Data Engineer.
+- **Tối ưu hóa truy vấn dữ liệu (Query Optimization):** Thay vì gọi LLM mọi lần, mình kết hợp **exact-match cache** (ElastiCache, hash câu đã chuẩn hóa) và Hybrid Search (BM25 + vector, RRF). Biết giới hạn của Serverless Redis (không RediSearch) rồi chọn đúng loại cache — cũng là một phần của tư duy Data Engineer, không kém việc vẽ kiến trúc “semantic” cho đẹp.
 
 ## Lời kết
 

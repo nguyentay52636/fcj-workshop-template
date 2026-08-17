@@ -72,6 +72,10 @@ The workflow also sets `concurrency: group: deploy-production` with `cancel-in-p
 **Before → after:** push to `main` used to auto-run apply (Required reviewer never appeared). After the fix, deploy only starts from the manual **Run workflow** button in the Actions tab.
 {{% /notice %}}
 
+{{% notice note %}}
+📌 **Screenshot of Actions → Deploy → Run workflow success** (`deploy-run-workflow.png`) is **not attached yet**. Current evidence: `workflow_dispatch` YAML + the GitHub plan limitation write-up. When captured: one successful Deploy run, saved as `static/images/5-Workshop/5.9-CICD/deploy-run-workflow.png`.
+{{% /notice %}}
+
 ---
 
 #### Next Content

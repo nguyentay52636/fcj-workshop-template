@@ -67,4 +67,8 @@ confirm → Textract OCR → chunk → embed → index → completed
 
 This serves as the clearest example in the entire project showing that **manual testing, even when unautomated, retains critical value for catching real bugs** — without this end-to-end test pass on real infrastructure, the missing VPC endpoint bug might have gone undetected until hit by actual end users.
 
+{{% notice note %}}
+📌 **504 / debug Console screenshot: N/A** — the original 504 frame was not kept. Remaining evidence is the trace write-up + Terraform `aws_vpc_endpoint "lambda"` and the re-test after apply (OCR resume completed). No fabricated screenshot.
+{{% /notice %}}
+
 ---

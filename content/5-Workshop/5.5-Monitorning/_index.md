@@ -20,7 +20,15 @@ The stream is declared in `modules/monitoring/main.tf` and consists of 2 main pa
 
 #### Data Flow Diagram
 
+<div align="center">
+
 ![Detailed Diagram for Stream 3 - Monitoring and Alerting](/images/5-Workshop/5.5-Monitorning/image.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.5. Stream 3 diagram — SNS, CloudWatch Alarms, Dashboard
+</p>
+
+</div>
 
 #### Detailed Contents
 

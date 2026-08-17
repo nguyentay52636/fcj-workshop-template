@@ -12,8 +12,25 @@ CI/CD chỉ lo phần **trigger** — thiết lập ban đầu vẫn cần thao 
 
 1. **Thêm secret `TF_API_TOKEN`** — `Settings → Secrets and variables → Actions → New repository secret`. Token lấy từ HCP Terraform: `User Settings → Tokens` (hoặc **Team Token** của org `RAGonAWS` nếu muốn giới hạn quyền hơn). Token này **dùng chung cho cả 2 workflow** (`ci.yml` cho `terraform plan`, `deploy.yml` cho `terraform apply`).
 
+<div align="center">
+
 ![Thêm secret 1](/images/5-Workshop/5.9-CICD/image5.9.3-1.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.9.3a. GitHub Actions — thêm repository secret
+</p>
+
+</div>
+
+<div align="center">
+
 ![Thêm secret 2](/images/5-Workshop/5.9-CICD/image5.9.3-2.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.9.3b. Secret <code>TF_API_TOKEN</code> dùng chung cho CI plan và Deploy apply
+</p>
+
+</div>
 
 {{% notice note %}}
 📌 **Không cần thêm AWS access key nào vào GitHub.** `terraform apply` chạy trên **worker của HCP Terraform** (execution mode Remote — xem [trang tổng quan](../)), không phải trên GitHub Actions runner. AWS credentials nằm ở **workspace variables trong HCP Terraform**, đã cấu hình sẵn, tách biệt khỏi GitHub Actions. Đây là lợi ích phụ của Remote execution: bề mặt tấn công phía GitHub nhỏ hơn so với đặt AWS credentials trực tiếp làm GitHub Secret.

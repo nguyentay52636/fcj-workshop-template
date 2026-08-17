@@ -34,22 +34,22 @@ Unstructured text data needs to undergo a strict ETL process before it can serve
 
 A core Data Engineering challenge in Web/App applications is latency and cost:
 
-- **Semantic Caching:** I integrated Amazon ElastiCache Serverless as a smart query caching layer. If a new question has a semantic meaning similar to a previous one, the system immediately returns results from Cache instead of calling expensive LLM models. This technique minimizes latency for end-users (Real-time serving).
+- **Exact-match cache (not a true semantic cache):** I use Amazon ElastiCache Serverless as a question → answer cache with TTL. The cache key is a hash of the question **after normalisation** (lowercase, strip punctuation, collapse whitespace). An **identical** question (after that step) hits cache and skips the LLM. ElastiCache Serverless has **no** RediSearch/vector module, so it does **not** match “similar meaning” queries. The UI may still label the step “Semantic cache”; the implementation is exact-match — I document that honestly instead of overselling.
 - **State Management & Feedback (Transaction Store):** The entire chat history and user feedback store are persisted in DynamoDB—a NoSQL database delivering ultra-fast write speeds with millisecond latency.
 
-## 4. Automated Batch Processing & Continuous Evaluation
+## 4. Automated Batch Processing & Continuous Evaluation (Partial)
 
-Beyond real-time data flows, a standardized data system always requires periodic processing (Batch Pipelines) for quality evaluation:
+Beyond real-time flows, a proper data system needs a batch path for quality evaluation. **This part is explicitly Partial** — not claimed as production-live:
 
-- **Automated Batch Jobs:** I used Amazon EventBridge Scheduler combined with AWS Lambda to launch the model evaluation pipeline (following the RAGAS evaluation criteria) automatically at fixed daily schedules.
-- **Periodic Data Lake Storage:** Daily evaluation results are pushed back into Amazon S3 Evaluation Results acting as a Data Lake for historical logs. This allows the team to easily monitor and analyze system quality trends over time.
+- **Terraform design is in place:** EventBridge Scheduler would invoke an evaluation Lambda (packaged as a **container image** on ECR, unlike the two zip Lambdas for ingestion/chat). Results are meant to land in S3 Evaluation Results, with RAGAS metrics (Faithfulness, Relevancy, Precision, Recall) on CloudWatch. A **two-phase gate** applies: phase 1 creates an empty ECR repo + IAM only; Lambda/schedule/alarm exist only after the image is pushed and the flag is turned on.
+- **Not fully running on the account yet:** `evaluation_runner.py` is still a **skeleton**; with `evaluation_image_pushed = false` the Lambda / EventBridge schedule / `ragas-faithfulness-low` alarm are **not live**. The Stream 3 dashboard RAGAS widget is **intentionally empty** until that job has run at least once. I keep this Partial and do not mix it with Streams 1–3, which are E2E-tested.
 
 ## 5. Data Observability & Monitoring
 
 Finally, data running within a Cloud system must be observable to catch issues promptly:
 
-- **Centralized Logs & Metrics:** Amazon CloudWatch collects logs and tracks critical pipeline metrics, such as DLQ Depth, API Gateway 5xx error rates, as well as AI Custom Metrics like Faithfulness, Relevancy, and Precision.
-- **Smart Alert Routing:** Incidents are classified by severity (Warning vs Critical). Upon a Critical failure, Amazon SNS works with AWS Chatbot to instantly route alert notifications to Slack or PagerDuty for the engineering team to resolve.
+- **Centralized Logs & Metrics:** Amazon CloudWatch collects logs and live pipeline metrics: DLQ depth, API Gateway 5xx rate, cache hit/miss (EMF from chat-engine). RAGAS custom metrics (Faithfulness, Relevancy, Precision) are **wired on the dashboard** but **have no values** until the evaluation stream in section 4 actually runs — consistent with Partial.
+- **Severity-based alerting:** Warning (email via SNS `alerts-info`) and Critical (SNS `alerts-critical`, Slack via AWS Chatbot when configured). PagerDuty is sketched as optional and **off by default**.
 
 ## Three Data Engineering Highlights I Learned From the Project
 
@@ -57,7 +57,7 @@ If you are preparing for a thesis or personal project, here are 3 Data Engineeri
 
 - **Decoupled Architecture:** The Data Ingestion and Query Serving phases operate independently via SQS queues and DynamoDB. Even if an Admin uploads thousands of PDF files at once, the end-user chat experience remains completely smooth and unaffected.
 - **Asynchronous Serverless Processing:** Combining S3 Events + SQS + Lambda makes the system fully asynchronous. Compute resources only spin up when data is flowing through, achieving 100% cloud operation cost optimization.
-- **Query Optimization:** Instead of querying LLMs directly in a "naive" manner, combining Semantic Cache (ElastiCache) and Hybrid Search (BM25 + Vector Search) clearly demonstrates a Data Engineer's query performance optimization mindset.
+- **Query Optimization:** Instead of calling the LLM every time, I combine an **exact-match cache** (ElastiCache, hash of the normalised question) with Hybrid Search (BM25 + vectors, RRF). Knowing Serverless Redis has no RediSearch and picking the right cache type is part of a Data Engineer’s job — not just drawing a prettier “semantic” box.
 
 ## Conclusion
 

@@ -97,8 +97,8 @@ async function pollStatus(documentId, { excludeAwaitingOcr = false } = {}) {
 }
 ```
 
-{{% notice tip %}}
-Khi `/status` trả `awaiting_ocr_confirmation`, giao diện hiện hộp Yes/No (Promise chờ người dùng bấm) trước khi gọi `/documents-decision`.
+{{% notice note %}}
+📌 Dialog Yes/No đã chạy trên stack thật (kịch bản 5–6 ở [5.7.4](../5.7.4-Test-end-to-end/); lần đầu `/documents-decision` từng trả **504** rồi được sửa VPC endpoint — [5.10.1](../../5.10-System-Testing/5.10.1-Manual-E2E-Testing/)). **Screenshot hộp thoại OCR riêng: N/A** — chưa chụp frame Yes/No. Khi có, đặt `static/images/5-Workshop/5.7-Frontend/03-ocr-dialog.png`.
 {{% /notice %}}
 
 #### Pane phải — thời gian thật, animation nén
@@ -116,13 +116,29 @@ Hỏi lại **y hệt** trong **cùng phiên** để thấy cache hit: thường
 
 #### Bằng chứng giao diện thật
 
-Luồng nạp tài liệu hoàn tất (S3 → SQS → trích xuất → chunk → embed → DynamoDB):
+Luồng nạp tài liệu hoàn tất (S3 → SQS → trích xuất → chunk → embed → DynamoDB). Nhật ký cùng ảnh còn ghi lần login sai (đỏ) rồi login đúng (xanh + IdToken):
+
+<div align="center">
 
 ![Luồng nạp tài liệu hoàn tất](/images/5-Workshop/5.7-Frontend/04-ingest-flow-pass.png)
 
-Luồng hỏi đáp hoàn tất (cache miss → guardrail → embed → hybrid search → Claude Sonnet → ghi lịch sử):
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.7.2a. Ingest Pass — file <code>danh_sach_bai_tap_pytorch.txt</code>, 8 bước hoàn tất (~7.3s)
+</p>
+
+</div>
+
+Luồng hỏi đáp hoàn tất (cache miss → guardrail → embed → hybrid search → Claude Sonnet → ghi lịch sử), user đã login `testuser@example.com`:
+
+<div align="center">
 
 ![Luồng hỏi đáp hoàn tất với câu trả lời grounded](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.7.2b. Q&amp;A Pass — câu hỏi grounded, hybrid search RRF, Claude 3.5 Sonnet
+</p>
+
+</div>
 
 ---
 

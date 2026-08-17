@@ -22,16 +22,30 @@ Nếu sau này cần **cập nhật code** `evaluation_runner.py` (không phải
 
 #### Kịch bản test
 
-| #   | Kịch bản                                                      | Kỳ vọng                                                                                                                   |
-| --- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
-| 1   | Chạy `terraform apply` lần 1 khi chưa push image              | Chỉ thấy ECR repo + IAM Role được tạo, không có lỗi                                                                       |
-| 2   | Build và push Docker image lên ECR                            | Image xuất hiện với tag `latest` trên ECR Console                                                                         |
-| 3   | Bật `evaluation_image_pushed = true`, apply lần 2             | Lambda, Schedule, Alarm RAGAS được tạo thành công                                                                         |
-| 4   | Invoke thủ công `evaluation_runner` (không chờ lịch 2h sáng)  | Chạy xong, không lỗi runtime (dù kết quả RAGAS có thể chưa hoàn toàn chính xác vì là skeleton)                            |
-| 5   | Kiểm tra S3 `evaluation_results`                              | File `evaluation/<ngày>/results.json` xuất hiện với dữ liệu chi tiết                                                      |
-| 6   | Kiểm tra CloudWatch namespace `RAGEvaluation`                 | 4 metric (Faithfulness, AnswerRelevancy, ContextPrecision, ContextRecall) có giá trị                                      |
-| 7   | Kiểm tra widget "RAGAS Evaluation Scores" ở Dashboard Luồng 3 | Đã có dữ liệu hiển thị (không còn trống như mô tả ở [trang 5.5.3](../../5.5-Monitorning/5.5.3-Dashboard-Custom-Metrics/)) |
-| 8   | Giả lập điểm Faithfulness thấp (dữ liệu test)                 | Alarm `ragas-faithfulness-low` chuyển `ALARM`, tin nhắn xuất hiện trên Slack qua kênh `alerts-critical`                   |
+| #   | Kịch bản                                                      | Kỳ vọng                                                                                                                   | Kết quả |
+| --- | ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | ------- |
+| 1   | Chạy `terraform apply` lần 1 khi chưa push image              | Chỉ thấy ECR repo + IAM Role được tạo, không có lỗi                                                                       | Pass — `evaluation_image_pushed = false`; Lambda/Schedule/Alarm `count = 0` |
+| 2   | Build và push Docker image lên ECR                            | Image xuất hiện với tag `latest` trên ECR Console                                                                         | N/A — chưa push image |
+| 3   | Bật `evaluation_image_pushed = true`, apply lần 2             | Lambda, Schedule, Alarm RAGAS được tạo thành công                                                                         | N/A — gate pha 2 chưa bật |
+| 4   | Invoke thủ công `evaluation_runner` (không chờ lịch 2h sáng)  | Chạy xong, không lỗi runtime (dù kết quả RAGAS có thể chưa hoàn toàn chính xác vì là skeleton)                            | N/A — Lambda chưa tồn tại trên AWS |
+| 5   | Kiểm tra S3 `evaluation_results`                              | File `evaluation/<ngày>/results.json` xuất hiện với dữ liệu chi tiết                                                      | N/A |
+| 6   | Kiểm tra CloudWatch namespace `RAGEvaluation`                 | 4 metric (Faithfulness, AnswerRelevancy, ContextPrecision, ContextRecall) có giá trị                                      | N/A |
+| 7   | Kiểm tra widget "RAGAS Evaluation Scores" ở Dashboard Luồng 3 | Đã có dữ liệu hiển thị (không còn trống như mô tả ở [trang 5.5.3](../../5.5-Monitorning/5.5.3-Dashboard-Custom-Metrics/)) | Partial — widget đã khai báo, **cố ý trống** cho đến khi job chạy |
+| 8   | Giả lập điểm Faithfulness thấp (dữ liệu test)                 | Alarm `ragas-faithfulness-low` chuyển `ALARM`, tin nhắn xuất hiện trên Slack qua kênh `alerts-critical`                   | N/A — alarm RAGAS cùng `count = 0` |
+
+#### Bằng chứng hiện có (Partial)
+
+<div align="center">
+
+![Sơ đồ Luồng 4 - RAG Evaluation RAGAS](/images/5-Workshop/5.6-RAGAS/image.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.6.4. Thiết kế Luồng 4 — EventBridge → Lambda container → S3 / CloudWatch (chưa chạy E2E production)
+</p>
+
+</div>
+
+Phần **có thật trên hạ tầng** sau apply lần 1: ECR repository rỗng + IAM role Lambda. Screenshot Console ECR / EventBridge / Lambda evaluation **chưa gắn** — và **không bịa** ảnh Lambda đang chạy vì `evaluation_image_pushed = false`. Khi chụp đúng phần có thật, đặt `static/images/5-Workshop/5.6-RAGAS/ecr-or-schedule.png`.
 
 #### Giới hạn còn tồn tại
 

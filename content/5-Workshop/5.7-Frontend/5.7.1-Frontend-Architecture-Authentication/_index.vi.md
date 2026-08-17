@@ -68,6 +68,34 @@ File example Terraform đặt `api_require_api_key = true`, nghĩa là mọi rou
 
 Mọi request backend đi qua helper `api()` — ghép endpoint đã cấu hình và gắn `Authorization: state.token`. Nút Upload / Gửi câu hỏi chỉ mở sau khi login. Challenge phụ (MFA, …) báo lỗi rõ — MFA mặc định tắt trong stack này.
 
+#### Bằng chứng đăng nhập Cognito
+
+Trước khi đăng nhập (form **1 · Kết nối**, nút Upload / Gửi còn tắt):
+
+<div align="center">
+
+![Giao diện 2 cột — chưa đăng nhập](/images/5-Workshop/5.7-Frontend/image.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.7.1a. UI idle — điền API URL / Client ID / Region, chưa có IdToken
+</p>
+
+</div>
+
+Sau khi `InitiateAuth` thành công: session `testuser@example.com`, nhật ký ghi nhận IdToken, Upload / Gửi bật — cùng một lần chạy với luồng hỏi đáp:
+
+<div align="center">
+
+![Đăng nhập Cognito thành công trên UI](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.7.1b. Login Pass — user Cognito thật, JWT gắn vào mọi gọi API Gateway
+</p>
+
+</div>
+
+Ảnh ingest ([5.7.2](../5.7.2-Chat-Upload-UI/)) còn cho thấy lần đăng nhập sai (log đỏ) rồi đăng nhập đúng (log xanh + token) trên cùng phiên.
+
 ---
 
 #### Nội dung tiếp theo

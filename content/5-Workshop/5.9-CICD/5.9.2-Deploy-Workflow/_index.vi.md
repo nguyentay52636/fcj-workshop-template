@@ -72,6 +72,10 @@ Workflow còn đặt `concurrency: group: deploy-production` với `cancel-in-pr
 **Trước → sau:** push lên `main` từng tự chạy apply (Required reviewer không bao giờ hiện). Sau khi sửa, deploy chỉ bắt đầu khi bấm **Run workflow** thủ công trong tab Actions.
 {{% /notice %}}
 
+{{% notice note %}}
+📌 **Screenshot Actions → Deploy → Run workflow thành công** (`deploy-run-workflow.png`) **chưa gắn**. Bằng chứng hiện có: YAML `workflow_dispatch` + giải thích giới hạn gói GitHub. Khi chụp: một run Deploy `success`, lưu `static/images/5-Workshop/5.9-CICD/deploy-run-workflow.png`.
+{{% /notice %}}
+
 ---
 
 #### Nội dung tiếp theo

@@ -68,6 +68,34 @@ All four routes (`/chat`, `/documents`, `/status`, `/documents-decision`) use a 
 
 Every backend call goes through a shared `api()` helper that prefixes the configured endpoint and sets `Authorization: state.token`. Upload and Ask stay disabled until login succeeds. Extra Cognito challenges (MFA, etc.) surface as errors — MFA is off by default in this stack.
 
+#### Cognito login evidence
+
+Before sign-in (section **1 · Kết nối**, Upload / Ask still disabled):
+
+<div align="center">
+
+![Two-pane UI — not signed in](/images/5-Workshop/5.7-Frontend/image.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.7.1a. Idle UI — API URL / Client ID / Region filled, no IdToken yet
+</p>
+
+</div>
+
+After a successful `InitiateAuth`: session `testuser@example.com`, log shows IdToken, Upload / Ask enabled — captured in the same run as the Q&A flow:
+
+<div align="center">
+
+![Successful Cognito login on the UI](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.7.1b. Login Pass — real Cognito user, JWT on every API Gateway call
+</p>
+
+</div>
+
+The ingest screenshot on [5.7.2](../5.7.2-Chat-Upload-UI/) also shows a failed login (red log) then a successful one (green log + token) in the same session.
+
 ---
 
 #### Next content

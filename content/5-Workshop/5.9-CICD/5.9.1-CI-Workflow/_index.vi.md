@@ -12,7 +12,7 @@ pre: " <b> 5.9.1. </b> "
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `secret-scan`      | `gitleaks` quét **toàn bộ lịch sử commit** của PR (`fetch-depth: 0`) — bắt sớm nếu có key/credential lỡ tay commit                                                         |
 | `python-lint`      | `ruff check modules` — chỉ soi code Lambda tự viết; thư viện `pypdf` đã vendor được loại trừ (`ruff.toml`)                                                                 |
-| `python-test`      | `pytest` (xem bảng dưới) — **33** test logic thuần Python; không cần AWS credentials. Chi tiết: [5.10.3](../../5.10-System-Testing/5.10.3-Layer-3-Automated-Unit-Testing/) |
+| `python-test`      | `pytest` (xem bảng dưới) — **33** test logic thuần Python; không cần AWS credentials. Chi tiết: [5.8.4](../../5.8-Backend/5.8.4-Backend-Testing/) |
 | `terraform-checks` | `terraform fmt -check` + `terraform validate`, dùng `terraform init -backend=false` — không cần đăng nhập HCP Terraform, chỉ tải provider để kiểm tra cú pháp              |
 | `terraform-plan`   | `terraform plan` **thật**, remote trên HCP Terraform (cần `TF_API_TOKEN`) — **chỉ trên PR**, chỉ là **speculative plan**, không đổi gì trên AWS                            |
 
@@ -82,6 +82,14 @@ jobs:
 
 {{% notice tip %}}
 `terraform-plan` khai báo `needs: terraform-checks` — chỉ chạy plan thật (**tốn phút chạy trên HCP Terraform**, có giới hạn/tính phí) **sau khi** `fmt`/`validate` đã sạch, tránh lãng phí cho lỗi cú pháp lẽ ra bắt được sớm hơn. Workflow còn dùng `concurrency` với `cancel-in-progress: true` để run PR cũ bị thay thế không chồng chất.
+{{% /notice %}}
+
+#### Kết quả trên GitHub Actions
+
+CI **không đổi gì trên AWS** — 4 job song song trên mọi PR/push `main`; `terraform-plan` chỉ trên PR. Unit suite **33** test (xem [5.8.4](../../5.8-Backend/5.8.4-Backend-Testing/)). Secret `TF_API_TOKEN` dùng cho plan: [5.9.3](../5.9.3-Manual-Setup-and-Scope-Limitations/).
+
+{{% notice note %}}
+📌 **Screenshot CI xanh trên PR** (`ci-green-pr.png`) **chưa gắn**. Bằng chứng hiện có: YAML + 33 test + ảnh thêm secret. Khi chụp: Actions → workflow CI → run thành công trên một PR, lưu vào `static/images/5-Workshop/5.9-CICD/ci-green-pr.png`.
 {{% /notice %}}
 
 ---

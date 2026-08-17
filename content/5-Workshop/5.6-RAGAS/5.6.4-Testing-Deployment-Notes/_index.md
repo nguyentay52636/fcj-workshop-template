@@ -22,16 +22,30 @@ If you need to **update code** in `evaluation_runner.py` later (not first-time d
 
 #### Test scenarios
 
-| #   | Scenario                                                            | Expected result                                                                                                         |
-| --- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
-| 1   | Run `terraform apply` phase 1 without pushing an image              | Only ECR repo + IAM Role are created, no errors                                                                         |
-| 2   | Build and push Docker image to ECR                                  | Image appears with `latest` tag on ECR Console                                                                          |
-| 3   | Set `evaluation_image_pushed = true`, apply phase 2                 | Lambda, Schedule, and RAGAS Alarm created successfully                                                                  |
-| 4   | Manually invoke `evaluation_runner` (do not wait for 2 AM schedule) | Completes without runtime errors (even if RAGAS scores are not fully accurate yet since it is a skeleton)               |
-| 5   | Check S3 `evaluation_results`                                       | File `evaluation/<date>/results.json` appears with detailed data                                                        |
-| 6   | Check CloudWatch namespace `RAGEvaluation`                          | 4 metrics (Faithfulness, AnswerRelevancy, ContextPrecision, ContextRecall) have values                                  |
-| 7   | Check "RAGAS Evaluation Scores" widget on Flow 3 Dashboard          | Data is displayed (no longer empty as described on [page 5.5.3](../../5.5-Monitorning/5.5.3-Dashboard-Custom-Metrics/)) |
-| 8   | Simulate low Faithfulness score (test data)                         | Alarm `ragas-faithfulness-low` transitions to `ALARM`, message appears on Slack via `alerts-critical` channel           |
+| #   | Scenario                                                            | Expected result                                                                                                         | Result |
+| --- | ------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- | ------ |
+| 1   | Run `terraform apply` phase 1 without pushing an image              | Only ECR repo + IAM Role are created, no errors                                                                         | Pass — `evaluation_image_pushed = false`; Lambda/Schedule/Alarm `count = 0` |
+| 2   | Build and push Docker image to ECR                                  | Image appears with `latest` tag on ECR Console                                                                          | N/A — image not pushed |
+| 3   | Set `evaluation_image_pushed = true`, apply phase 2                 | Lambda, Schedule, and RAGAS Alarm created successfully                                                                  | N/A — phase-2 gate not enabled |
+| 4   | Manually invoke `evaluation_runner` (do not wait for 2 AM schedule) | Completes without runtime errors (even if RAGAS scores are not fully accurate yet since it is a skeleton)               | N/A — Lambda does not exist on AWS yet |
+| 5   | Check S3 `evaluation_results`                                       | File `evaluation/<date>/results.json` appears with detailed data                                                        | N/A |
+| 6   | Check CloudWatch namespace `RAGEvaluation`                          | 4 metrics (Faithfulness, AnswerRelevancy, ContextPrecision, ContextRecall) have values                                  | N/A |
+| 7   | Check "RAGAS Evaluation Scores" widget on Flow 3 Dashboard          | Data is displayed (no longer empty as described on [page 5.5.3](../../5.5-Monitorning/5.5.3-Dashboard-Custom-Metrics/)) | Partial — widget is declared, **intentionally empty** until the job runs |
+| 8   | Simulate low Faithfulness score (test data)                         | Alarm `ragas-faithfulness-low` transitions to `ALARM`, message appears on Slack via `alerts-critical` channel           | N/A — RAGAS alarm also has `count = 0` |
+
+#### Evidence on hand (Partial)
+
+<div align="center">
+
+![Diagram of Stream 4 - RAG Evaluation RAGAS](/images/5-Workshop/5.6-RAGAS/image.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.6.4. Stream 4 design — EventBridge → container Lambda → S3 / CloudWatch (not production E2E yet)
+</p>
+
+</div>
+
+What **does exist** after phase-1 apply: an empty ECR repository + the Lambda IAM role. Console screenshots of ECR / EventBridge / evaluation Lambda are **not attached** — and we **do not invent** a running-Lambda shot because `evaluation_image_pushed = false`. When capturing only what is real, drop it as `static/images/5-Workshop/5.6-RAGAS/ecr-or-schedule.png`.
 
 #### Known Limitations
 

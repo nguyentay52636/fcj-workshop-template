@@ -18,4 +18,4 @@ This post outlines an optimized learning roadmap for Data Engineers on AWS. It c
 
 ### [Blog 3 - From Theory to Execution: The Data Engineering Challenge in a Real-World GenAI/RAG Project](3.3-Blog3/)
 
-This article deep-dives into a real-world GenAI/RAG system architecture, demonstrating that 80% of system stability and performance relies on Data Engineering. Key components highlighted include Event-Driven Ingestion (S3 Event + SQS), Unstructured Data ETL (Textract OCR + Vector Storage), Low-Latency Caching (ElastiCache + DynamoDB), Batch Evaluation Pipelines (RAGAS + EventBridge), and Data Observability (CloudWatch + SNS).
+This article deep-dives into a real-world GenAI/RAG system architecture, demonstrating that 80% of system stability and performance relies on Data Engineering. Key pieces: Event-Driven Ingestion (S3 Event + SQS), unstructured ETL (Textract OCR + DynamoDB vectors), **exact-match cache** on ElastiCache (not a true semantic cache), a RAGAS + EventBridge evaluation pipeline in **Partial** status, and Data Observability (CloudWatch + SNS).

@@ -97,8 +97,8 @@ async function pollStatus(documentId, { excludeAwaitingOcr = false } = {}) {
 }
 ```
 
-{{% notice tip %}}
-When `/status` returns `awaiting_ocr_confirmation`, the UI shows a Yes/No confirm box built as a Promise that waits for the user click before calling `/documents-decision`.
+{{% notice note %}}
+📌 The Yes/No dialog ran on the live stack (scenarios 5–6 in [5.7.4](../5.7.4-Test-end-to-end/); the first `/documents-decision` call returned **504** until the Lambda VPC endpoint was added — [5.10.1](../../5.10-System-Testing/5.10.1-Manual-E2E-Testing/)). **Dedicated OCR dialog screenshot: N/A.** When captured, drop it as `static/images/5-Workshop/5.7-Frontend/03-ocr-dialog.png`.
 {{% /notice %}}
 
 #### Right pane — real timings, compressed animation
@@ -116,13 +116,29 @@ Ask the **same** question again in the **same** session to see a cache hit: usua
 
 #### Live UI evidence
 
-Document ingest completed (S3 → SQS → extract → chunk → embed → DynamoDB):
+Document ingest completed (S3 → SQS → extract → chunk → embed → DynamoDB). The same shot also shows a failed login (red) then a successful one (green + IdToken):
+
+<div align="center">
 
 ![Document ingest flow completed](/images/5-Workshop/5.7-Frontend/04-ingest-flow-pass.png)
 
-Q&A flow completed (cache miss → guardrail → embed → hybrid search → Claude Sonnet → write history):
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.7.2a. Ingest Pass — <code>danh_sach_bai_tap_pytorch.txt</code>, 8 steps complete (~7.3s)
+</p>
+
+</div>
+
+Q&A flow completed (cache miss → guardrail → embed → hybrid search → Claude Sonnet → write history), signed in as `testuser@example.com`:
+
+<div align="center">
 
 ![Q&A flow completed with grounded answer](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.7.2b. Q&amp;A Pass — grounded answer, hybrid search RRF, Claude 3.5 Sonnet
+</p>
+
+</div>
 
 ---
 

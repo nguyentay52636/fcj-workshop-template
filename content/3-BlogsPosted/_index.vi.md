@@ -18,4 +18,4 @@ Bài viết định hướng lộ trình học tập tối ưu cho Data Engineer
 
 ### [Blog 3 - Từ lý thuyết đến thực thi: Bài toán Data Engineering trong một đồ án GenAI/RAG thực tế](3.3-Blog3/)
 
-Bài viết đi sâu vào phân tích kiến trúc hệ thống GenAI/RAG thực tế, chứng minh rằng 80% độ ổn định và hiệu năng nằm ở khâu Data Engineering. Các kỹ thuật chính được chia sẻ gồm: Event-Driven Ingestion Pipeline (S3 Event + SQS), xử lý ETL dữ liệu phi cấu trúc (Textract OCR + Vector Storage), Semantic Caching thời gian thực (ElastiCache + DynamoDB), Batch Evaluation Pipeline (RAGAS + EventBridge) và Data Observability (CloudWatch + SNS).
+Bài viết đi sâu vào phân tích kiến trúc hệ thống GenAI/RAG thực tế, chứng minh rằng 80% độ ổn định và hiệu năng nằm ở khâu Data Engineering. Các kỹ thuật chính: Event-Driven Ingestion (S3 Event + SQS), ETL dữ liệu phi cấu trúc (Textract OCR + vector trên DynamoDB), **exact-match cache** trên ElastiCache (không phải semantic cache thật), pipeline đánh giá RAGAS + EventBridge ở trạng thái **Partial**, và Data Observability (CloudWatch + SNS).

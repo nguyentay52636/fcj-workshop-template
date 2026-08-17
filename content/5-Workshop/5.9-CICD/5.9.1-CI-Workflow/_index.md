@@ -12,7 +12,7 @@ pre: " <b> 5.9.1. </b> "
 | ------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | `secret-scan`      | `gitleaks` scans the **full commit history** of the PR (`fetch-depth: 0`) — catch keys/credentials committed by mistake early                                  |
 | `python-lint`      | `ruff check modules` — lint Lambda code only; vendored `pypdf` is excluded (`ruff.toml`)                                                                       |
-| `python-test`      | `pytest` (see table below) — **33** pure-Python tests; no AWS credentials. Details: [5.10.3](../../5.10-System-Testing/5.10.3-Layer-3-Automated-Unit-Testing/) |
+| `python-test`      | `pytest` (see table below) — **33** pure-Python tests; no AWS credentials. Details: [5.8.4](../../5.8-Backend/5.8.4-Backend-Testing/) |
 | `terraform-checks` | `terraform fmt -check` + `terraform validate`, using `terraform init -backend=false` — no HCP login; just download providers for syntax checks                 |
 | `terraform-plan`   | Real `terraform plan` remote on HCP Terraform (needs `TF_API_TOKEN`) — **PR only**, **speculative** (changes nothing on AWS)                                   |
 
@@ -82,6 +82,14 @@ jobs:
 
 {{% notice tip %}}
 `terraform-plan` declares `needs: terraform-checks` — the real plan (**uses HCP Terraform run minutes**, which have limits/cost) only runs **after** `fmt`/`validate` are clean, so syntax errors are caught cheaper and earlier. The workflow also uses `concurrency` with `cancel-in-progress: true` so superseded PR runs do not pile up.
+{{% /notice %}}
+
+#### Results on GitHub Actions
+
+CI **changes nothing on AWS** — 4 jobs in parallel on every PR/push to `main`; `terraform-plan` on PRs only. The unit suite is **33** tests (see [5.8.4](../../5.8-Backend/5.8.4-Backend-Testing/)). The `TF_API_TOKEN` secret used for plan is documented in [5.9.3](../5.9.3-Manual-Setup-and-Scope-Limitations/).
+
+{{% notice note %}}
+📌 **Green-CI-on-PR screenshot** (`ci-green-pr.png`) is **not attached yet**. Current evidence: workflow YAML + 33 tests + secret-setup screenshots. When captured: Actions → CI workflow → a successful PR run, saved as `static/images/5-Workshop/5.9-CICD/ci-green-pr.png`.
 {{% /notice %}}
 
 ---

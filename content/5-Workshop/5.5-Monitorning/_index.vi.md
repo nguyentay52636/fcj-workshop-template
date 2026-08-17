@@ -20,7 +20,15 @@ Hạ tầng khai báo tại `modules/monitoring/main.tf`, gồm 2 phần chính:
 
 #### Sơ đồ luồng dữ liệu
 
+<div align="center">
+
 ![Sơ đồ chi tiết Luồng 3 - Monitoring và Alert](/images/5-Workshop/5.5-Monitorning/image.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.5. Sơ đồ Luồng 3 — SNS, CloudWatch Alarm, Dashboard
+</p>
+
+</div>
 
 #### Nội dung chi tiết
 
