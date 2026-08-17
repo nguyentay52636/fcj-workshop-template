@@ -72,9 +72,24 @@ The workflow also sets `concurrency: group: deploy-production` with `cancel-in-p
 **Before → after:** push to `main` used to auto-run apply (Required reviewer never appeared). After the fix, deploy only starts from the manual **Run workflow** button in the Actions tab.
 {{% /notice %}}
 
-{{% notice note %}}
-📌 **Screenshot of Actions → Deploy → Run workflow success** (`deploy-run-workflow.png`) is **not attached yet**. Current evidence: `workflow_dispatch` YAML + the GitHub plan limitation write-up. When captured: one successful Deploy run, saved as `static/images/5-Workshop/5.9-CICD/deploy-run-workflow.png`.
-{{% /notice %}}
+#### Evidence on GitHub Actions
+
+This is the correct **Deploy** screen with the **Run workflow** button (`workflow_dispatch`). The **small miss:** both runs are red — not a wrong trigger, but **`terraform init` failed** (usually missing/wrong `TF_API_TOKEN`); `apply` was skipped (~10s).
+
+| Run | Trigger | Result |
+| --- | --- | --- |
+| #1 (3 Aug) | `push` — old design | failure at `terraform init` |
+| #2 (today) | **Manually run** — current gate | failure at `terraform init` (same cause) |
+
+<div align="center">
+
+![GitHub Actions Deploy — Run workflow, both runs fail at init](/images/5-Workshop/5.9-CICD/deploy-run-workflow.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.9.2. Deploy — Run workflow clicked (#2). Failed fast at <code>terraform init</code>; nothing applied on AWS. The manual gate is correct; check the HCP token in [5.9.3](../5.9.3-Manual-Setup-and-Scope-Limitations/).
+</p>
+
+</div>
 
 ---
 

@@ -72,9 +72,24 @@ Workflow còn đặt `concurrency: group: deploy-production` với `cancel-in-pr
 **Trước → sau:** push lên `main` từng tự chạy apply (Required reviewer không bao giờ hiện). Sau khi sửa, deploy chỉ bắt đầu khi bấm **Run workflow** thủ công trong tab Actions.
 {{% /notice %}}
 
-{{% notice note %}}
-📌 **Screenshot Actions → Deploy → Run workflow thành công** (`deploy-run-workflow.png`) **chưa gắn**. Bằng chứng hiện có: YAML `workflow_dispatch` + giải thích giới hạn gói GitHub. Khi chụp: một run Deploy `success`, lưu `static/images/5-Workshop/5.9-CICD/deploy-run-workflow.png`.
-{{% /notice %}}
+#### Bằng chứng trên GitHub Actions
+
+Đúng màn **Deploy** + nút **Run workflow** (`workflow_dispatch`). **Lỗi nhỏ:** 2 run đều đỏ — không phải YAML sai cổng, mà **`terraform init` fail** (thường thiếu/sai secret `TF_API_TOKEN`); bước `apply` bị skip (~10s).
+
+| Run | Trigger | Kết quả |
+| --- | --- | --- |
+| #1 (3/8) | `push` — thiết kế cũ | failure tại `terraform init` |
+| #2 (hôm nay) | **Manually run** — đúng cổng mới | failure tại `terraform init` (cùng nguyên nhân) |
+
+<div align="center">
+
+![GitHub Actions Deploy — Run workflow, 2 run fail ở init](/images/5-Workshop/5.9-CICD/deploy-run-workflow.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.9.2. Deploy — đã bấm Run workflow (#2). Fail nhanh ở <code>terraform init</code>, chưa apply AWS. Cổng thủ công đúng; secret HCP cần kiểm tra ở [5.9.3](../5.9.3-Manual-Setup-and-Scope-Limitations/).
+</p>
+
+</div>
 
 ---
 

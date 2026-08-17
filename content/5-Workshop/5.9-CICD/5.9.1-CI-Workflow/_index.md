@@ -88,9 +88,17 @@ jobs:
 
 CI **changes nothing on AWS** — 4 jobs in parallel on every PR/push to `main`; `terraform-plan` on PRs only. The unit suite is **33** tests (see [5.8.4](../../5.8-Backend/5.8.4-Backend-Testing/)). The `TF_API_TOKEN` secret used for plan is documented in [5.9.3](../5.9.3-Manual-Setup-and-Scope-Limitations/).
 
-{{% notice note %}}
-📌 **Green-CI-on-PR screenshot** (`ci-green-pr.png`) is **not attached yet**. Current evidence: workflow YAML + 33 tests + secret-setup screenshots. When captured: Actions → CI workflow → a successful PR run, saved as `static/images/5-Workshop/5.9-CICD/ci-green-pr.png`.
-{{% /notice %}}
+Repo [tientho201/RAGonAWS](https://github.com/tientho201/RAGonAWS): **7 CI runs on `main` are all green**. `terraform-plan` did **not** run on these because the trigger was `push`, not a pull request.
+
+<div align="center">
+
+![GitHub Actions CI — 7 green runs on main](/images/5-Workshop/5.9-CICD/ci-green-pr.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.9.1. CI Pass — 7/7 successful runs on <code>main</code> (push). No PR yet, so no <code>terraform-plan</code> job.
+</p>
+
+</div>
 
 ---
 

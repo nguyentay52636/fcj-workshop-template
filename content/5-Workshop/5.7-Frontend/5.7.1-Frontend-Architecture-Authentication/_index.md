@@ -82,19 +82,27 @@ Figure 5.7.1a. Idle UI — API URL / Client ID / Region filled, no IdToken yet
 
 </div>
 
-After a successful `InitiateAuth`: session `testuser@example.com`, log shows IdToken, Upload / Ask enabled — captured in the same run as the Q&A flow:
+After a successful `InitiateAuth` — evidence is in **two places**, not the pipeline: left pane **1 · Kết nối** (green dot + email) and **Nhật ký** (token line).
 
 <div align="center">
 
-![Successful Cognito login on the UI](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
+![Successful Cognito login — Connection section](/images/5-Workshop/5.7-Frontend/01-login-pass.png)
 
 <p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
-Figure 5.7.1b. Login Pass — real Cognito user, JWT on every API Gateway call
+Figure 5.7.1b. Login Pass — green status, session <code>testuser@example.com</code>
 </p>
 
 </div>
 
-The ingest screenshot on [5.7.2](../5.7.2-Chat-Upload-UI/) also shows a failed login (red log) then a successful one (green log + token) in the same session.
+<div align="center">
+
+![Cognito log — failed then IdToken received](/images/5-Workshop/5.7-Frontend/01-login-token-log.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Figure 5.7.1c. Log — failed login (red) then <em>Đăng nhập thành công, đã nhận ID token</em> (green)
+</p>
+
+</div>
 
 ---
 

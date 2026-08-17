@@ -82,19 +82,27 @@ Hình 5.7.1a. UI idle — điền API URL / Client ID / Region, chưa có IdToke
 
 </div>
 
-Sau khi `InitiateAuth` thành công: session `testuser@example.com`, nhật ký ghi nhận IdToken, Upload / Gửi bật — cùng một lần chạy với luồng hỏi đáp:
+Sau khi `InitiateAuth` thành công — bằng chứng nằm ở **hai chỗ**, không phải pipeline: cột trái **1 · Kết nối** (chấm xanh + email) và **Nhật ký** (dòng token).
 
 <div align="center">
 
-![Đăng nhập Cognito thành công trên UI](/images/5-Workshop/5.7-Frontend/05-qa-flow-pass.png)
+![Đăng nhập Cognito thành công — mục Kết nối](/images/5-Workshop/5.7-Frontend/01-login-pass.png)
 
 <p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
-Hình 5.7.1b. Login Pass — user Cognito thật, JWT gắn vào mọi gọi API Gateway
+Hình 5.7.1b. Login Pass — chấm xanh, session <code>testuser@example.com</code>
 </p>
 
 </div>
 
-Ảnh ingest ([5.7.2](../5.7.2-Chat-Upload-UI/)) còn cho thấy lần đăng nhập sai (log đỏ) rồi đăng nhập đúng (log xanh + token) trên cùng phiên.
+<div align="center">
+
+![Nhật ký Cognito — thất bại rồi nhận IdToken](/images/5-Workshop/5.7-Frontend/01-login-token-log.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.7.1c. Nhật ký — login sai (đỏ) rồi <em>Đăng nhập thành công, đã nhận ID token</em> (xanh)
+</p>
+
+</div>
 
 ---
 

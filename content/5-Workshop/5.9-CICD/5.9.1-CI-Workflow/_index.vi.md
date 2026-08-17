@@ -88,9 +88,17 @@ jobs:
 
 CI **không đổi gì trên AWS** — 4 job song song trên mọi PR/push `main`; `terraform-plan` chỉ trên PR. Unit suite **33** test (xem [5.8.4](../../5.8-Backend/5.8.4-Backend-Testing/)). Secret `TF_API_TOKEN` dùng cho plan: [5.9.3](../5.9.3-Manual-Setup-and-Scope-Limitations/).
 
-{{% notice note %}}
-📌 **Screenshot CI xanh trên PR** (`ci-green-pr.png`) **chưa gắn**. Bằng chứng hiện có: YAML + 33 test + ảnh thêm secret. Khi chụp: Actions → workflow CI → run thành công trên một PR, lưu vào `static/images/5-Workshop/5.9-CICD/ci-green-pr.png`.
-{{% /notice %}}
+Repo [tientho201/RAGonAWS](https://github.com/tientho201/RAGonAWS): **7 run CI trên `main` đều xanh**. Job `terraform-plan` **không chạy** trên các run này vì trigger là `push`, không phải pull request.
+
+<div align="center">
+
+![GitHub Actions CI — 7 run xanh trên main](/images/5-Workshop/5.9-CICD/ci-green-pr.png)
+
+<p style="font-size: 0.85em; color: #666; font-style: italic; margin-top: 8px;">
+Hình 5.9.1. CI Pass — 7/7 run success trên <code>main</code> (push). Chưa có PR nên chưa có job <code>terraform-plan</code>.
+</p>
+
+</div>
 
 ---
 

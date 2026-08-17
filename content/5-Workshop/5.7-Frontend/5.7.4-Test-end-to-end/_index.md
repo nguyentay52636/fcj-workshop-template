@@ -48,8 +48,8 @@ Figure 5.7.4c. Q&amp;A Pass — grounded, cache miss, hybrid search
 
 | #   | Scenario                                                         | Expected                                                            | Result | Figure |
 | --- | ---------------------------------------------------------------- | ------------------------------------------------------------------- | ------ | ------ |
-| 1   | Login with a valid Cognito user                                  | Receive `IdToken`; auth indicator turns green; Upload / Ask enabled | Pass — token received, controls enabled | 5.7.4b–c |
-| 2   | Login with wrong password                                        | Clear error; UI does not crash; buttons stay disabled               | Pass — error shown, buttons remained disabled | 5.7.4b (red log) |
+| 1   | Login with a valid Cognito user                                  | Receive `IdToken`; auth indicator turns green; Upload / Ask enabled | Pass — token received, controls enabled | [5.7.1b–c](../5.7.1-Frontend-Architecture-Authentication/) |
+| 2   | Login with wrong password                                        | Clear error; UI does not crash; buttons stay disabled               | Pass — error shown, buttons remained disabled | [5.7.1c](../5.7.1-Frontend-Architecture-Authentication/) (red log) |
 | 3   | Upload `.txt` / `.md` (text)                                     | Content appears in the editor and can be edited before send         | Pass — text editable in the editor | 5.7.4b |
 | 4   | Upload a PDF that already has a text layer                       | Ingest completes without OCR confirm; extract via `pypdf`           | Pass — no OCR dialog; ingest completed | — |
 | 5   | Upload a scanned PDF (no text) — choose **Yes**                  | OCR confirm dialog → Textract → pipeline continues                  | Pass — dialog shown; Textract path continued | N/A (dialog not captured) |

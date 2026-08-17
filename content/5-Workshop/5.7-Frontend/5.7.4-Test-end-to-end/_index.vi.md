@@ -48,8 +48,8 @@ Hình 5.7.4c. Q&amp;A Pass — grounded, cache miss, hybrid search
 
 | #   | Kịch bản                                                    | Kỳ vọng                                                                       | Kết quả | Hình |
 | --- | ----------------------------------------------------------- | ----------------------------------------------------------------------------- | ------- | --- |
-| 1   | Đăng nhập với tài khoản Cognito hợp lệ                      | Nhận `IdToken`; chấm trạng thái chuyển xanh; Upload / Gửi bật                 | Pass — nhận token, nút thao tác bật | 5.7.4b–c |
-| 2   | Đăng nhập sai mật khẩu                                      | Hiện lỗi rõ ràng, không crash giao diện; nút vẫn tắt                          | Pass — hiện lỗi, nút vẫn tắt | 5.7.4b (log đỏ) |
+| 1   | Đăng nhập với tài khoản Cognito hợp lệ                      | Nhận `IdToken`; chấm trạng thái chuyển xanh; Upload / Gửi bật                 | Pass — nhận token, nút thao tác bật | [5.7.1b–c](../5.7.1-Frontend-Architecture-Authentication/) |
+| 2   | Đăng nhập sai mật khẩu                                      | Hiện lỗi rõ ràng, không crash giao diện; nút vẫn tắt                          | Pass — hiện lỗi, nút vẫn tắt | [5.7.1c](../5.7.1-Frontend-Architecture-Authentication/) (log đỏ) |
 | 3   | Tải tài liệu `.txt`/`.md` (text)                            | Hiện được nội dung trong ô soạn thảo, sửa tay được trước khi gửi              | Pass — nội dung sửa được trong editor | 5.7.4b |
 | 4   | Tải PDF có lớp text sẵn                                     | Ingest xong không qua bước xác nhận OCR, trích xuất bằng `pypdf`              | Pass — không hiện dialog OCR; ingest xong | — |
 | 5   | Tải PDF dạng scan (không có text) — chọn **Có**             | Hiện dialog xác nhận OCR → chạy Textract → tiếp tục pipeline                  | Pass — hiện dialog; tiếp tục qua Textract | N/A (chưa chụp dialog) |
